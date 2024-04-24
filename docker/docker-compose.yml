@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db_ativos:
+    image: postgres:16.2-alpine3.19
+    
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Ativos
+    
+    volumes:
+      - ../volumes/db_acoes:/var/lib/postgresql/data
+      - ../sql/ativos/popular-tabela-ativos.sql:/docker-entrypoint-initdb.d/init.sql
+    
+
