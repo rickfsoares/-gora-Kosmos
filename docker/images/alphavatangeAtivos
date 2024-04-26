@@ -1,0 +1,14 @@
+FROM python:3.13.0a6-alpine3.19
+
+WORKDIR /home/app
+
+COPY Requirements.txt .
+
+RUN apk update
+RUN apk --no-cache --update add build-base
+RUN apk add py3-pandas
+RUN apk add py3-psycopg2
+RUN apk add py3-flask
+RUN apk add py3-redis
+RUN python3 -m pip install -r Requirements.txt --no-cache-dir
+
