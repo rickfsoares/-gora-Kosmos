@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db_ativos:
     image: postgres:16.2-alpine3.19
@@ -12,5 +10,43 @@ services:
     volumes:
       - ../volumes/db_acoes:/var/lib/postgresql/data
       - ../sql/ativos/popular-tabela-ativos.sql:/docker-entrypoint-initdb.d/init.sql
+
+  app_ativos:
+    build: 
+      context: ./images/
+      dockerfile: alphavatangeAtivos
+      
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=Ativos  
+      - POSTGRES_SCHEMA=public
+      - POSTGRES_HOST=db_ativos
+      - ALPHA_VANTAGE_API_KEY=${ALPHA_VANTAGE_API_KEY}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
+    ports:
+      - "5000:5000"
+
+    volumes:
+      - ../code/back-end/microservices/alphavantage-ativos:/home/app
+
+    depends_on:
+      - db_ativos
+      - redis
+
+    stdin_open: true
+
+  redis:
+    image: redis:7.2.4-alpine3.19
+
+
+
+
+
+
+    
+
     
 
