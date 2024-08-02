@@ -15,6 +15,7 @@ def update_stock_data():
     logging.info("Abrindo conexão com o Redis")
     stocks = db.get_all_stocks()
     logging.info("Buscando todos os ativos na base de dados")
+
     for stock in stocks:
         id_stock = stock[0]
         nome = stock[1]
@@ -23,12 +24,12 @@ def update_stock_data():
             data: pandas.DataFrame = alpha_vantage.get_stock_data(nome)
             logging.info(f"Buscando dados do ativo {nome} na API Alpha Vantage")
             fist_row: pandas.DataFrame = data.iloc[0]
-            db.update_stock(id_stock, fist_row["4. close"], fist_row["5. volume"])
+            db.update_stock(id_stock, fist_row["4. close"][0], fist_row["5. volume"][0])
             logging.info(f"Atualizando a quantia de fechamento e volume do {nome} na base de dados")
             redis.save_stock_data(data, nome)
             logging.info(f"Salvando dados do ativo {nome} no Redis")
         except Exception as e:
-            logging.error(f"Erro ao buscar dados do ativo {nome} na API Alpha Vantage: {e.__cause__}")
+            logging.error(f"Erro ao buscar dados do ativo {nome} na API Alpha Vantage: {e}")
 
     db.close()
     logging.info("Fechando conexão com o banco de dados")

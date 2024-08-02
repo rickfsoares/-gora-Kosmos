@@ -11,7 +11,7 @@ class Config(object):
     JOBS = [
         {
             "id": "update_stock_data",
-            "func": "main:update_stock_data",
+            "func": "jobs.stock:update_stock_data",
             "trigger": "cron",
             "hour": 8,
             "minute": 0,
@@ -42,6 +42,7 @@ def get_stock_data(stock):
 @app.route("/stock/gerar-ativos", methods=["GET"])
 def gerar_ativos():
     update_stock_data()
+    return "Ativos gerados", 200
 
 
 if __name__ == "__main__":
