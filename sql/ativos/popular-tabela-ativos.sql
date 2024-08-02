@@ -6,29 +6,32 @@ CREATE TABLE IF NOT EXISTS ativos(
     volume INTEGER NOT NULL
 );
 
-
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('BlackRock', 'black rock', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Meta', 'meta', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Apple', 'apple', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Microsoft', 'microsoft', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Nasdaq', 'nasdaq', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Riot Games', 'riot', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Nvidia', 'nvidia', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('American Airlines Group', 'American Airlines Group Inc', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Warner Bros. Entertainment', 'Warner Bros', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Terawulf Inc', 'TeraWulf', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Workhorse Group', 'Workhorse', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Cisco Systems', 'Cisco', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Avenue Therapeutics Inc', 'Avenue Therapeutics', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Patterson-UTI', 'Patterson-UIT Energy Inc', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Paramount Global', 'Paramount Global', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Mondelez International', 'Mondelez International', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Connexa Sports Technologies Inc', 'Connexa Sports Technologies', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Aurora Innovation, Inc', 'Aurora Innovation Inc - Class A', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Marvell Technology Inc', 'Marvell Technology Inc', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('PayPal Holdings Inc', 'PayPal Holdings Inc', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Western Digital Corp', 'Western Digital Corp', 0.00, 0);
-INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('Iris Energy', 'Iris Energy', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('IBM', 'IBM', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('NVDA', 'NVDA', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('TSLA', 'TSLA', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('AAPL', 'AAPL', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('META', 'META', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('AMD', 'AMD', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('MSFT', 'MSFT', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('AMZN', 'AMZN', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('AVGO', 'AVGO', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('UNH', 'UNH', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('SMCI', 'SMCI', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('INTC', 'INTC', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('LLY', 'LLY', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('MU', 'MU', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('GOOG', 'GOOG', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('QCOM', 'QCOM', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('BAC', 'BAC', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('NSTR', 'NSTR', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('NFLX', 'NFLX', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('JPM', 'JPM', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('DELL', 'DELL', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('COIN', 'COIN', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('UBER', 'UBER', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('HD', 'HD', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('ORCL', 'ORCL', 0.00, 0);
+INSERT INTO ativos (nome, descricao, cotacao, volume) VALUES ('MCD', 'MCD', 0.00, 0);
 
 
 

@@ -20,11 +20,11 @@ class DB:
     def update_stock(self, id_ativo, cotacao, volume):
         self.cursor.execute("UPDATE ativos SET cotacao = %s, volume = %s WHERE id_ativo = %s", (cotacao, volume, id_ativo))
         self.conn.commit()
-        self.cursor.close()
 
     def close(self):
         self.cursor.close()
         self.conn.close()
+
 
 
 

@@ -1,34 +1,10 @@
+import os
+
 import flask
-import pandas
 from flask_apscheduler import APScheduler
-from db.db import DB
-from AlphaVantage.alphavantage import AlphaVantage
-from db_redis.db_redis import DB_Redis
-import threading
-
-
-def update_stock_data():
-    db = DB()
-    alpha_vantage = AlphaVantage()
-    redis = DB_Redis()
-    stocks = db.get_all_stocks()
-    for stock in stocks:
-        id_stock = stock[0]
-        nome = stock[1]
-        try:
-            data: pandas.DataFrame = alpha_vantage.get_stock_data(nome)
-            fist_row: pandas.DataFrame = data.iloc[0]
-            db.update_stock(id_stock, fist_row["4. close"], fist_row["5. volume"])
-            redis.save_stock_data(data, nome)
-
-        except Exception as e:
-            print(f"Error on stock {nome}: {e}")
-
-    db.close()
-
-
-thread = threading.Thread(target=update_stock_data)
-thread.start()
+from databases.db_redis import DB_Redis
+from jobs.stock import update_stock_data
+from flask_socketio import SocketIO, emit
 
 
 class Config(object):
@@ -49,6 +25,7 @@ app.config.from_object(Config())
 scheduler = APScheduler()
 scheduler.init_app(app)
 scheduler.start()
+socketio = SocketIO(app)
 
 
 @app.route("/health-check", methods=["GET"])
@@ -61,3 +38,13 @@ def get_stock_data(stock):
     redis = DB_Redis()
     data = redis.get_stock_data(stock)
     return flask.jsonify(data), 200
+
+@app.route("/stock/gerar-ativos", methods=["GET"])
+def gerar_ativos():
+    update_stock_data()
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    socketio.run(app, host='0.0.0.0', port=port)
+

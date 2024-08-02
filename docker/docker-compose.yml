@@ -1,7 +1,6 @@
 services:
   db_ativos:
     image: postgres:16.2-alpine3.19
-    
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -39,12 +38,13 @@ services:
       - db_ativos
       - redis
 
-    stdin_open: true
-
   redis:
     image: redis:7.2.4-alpine3.19
     ports:
       - "6379:6379"
+    
+    volumes:
+      - ../volumes/redis:/data
 
 
 
