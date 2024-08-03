@@ -13,7 +13,6 @@ class AlphaVantage:
 
     def get_stock_data(self, stock: str) -> DataFrame:
         has_data = False
-        logging.error(self.api_key)
         for key in self.api_key:
             try:
                 self.ts.key = key

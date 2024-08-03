@@ -13,7 +13,6 @@ class DB_Redis:
 
     def save_stock_data(self, data: pd.DataFrame, stock: str) -> None:
         for dict_item in data.to_dict("records"):
-            print(dict_item)
             self.redis.lpush(stock, json.dumps(dict_item))
 
     def get_stock_data(self, stock: str) -> list[dict]:
