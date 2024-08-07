@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="header">
+    <h1>Ágora Kosmos</h1>
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="/invest">Investir</a>
+      <a href="#">Conta</a>
+      <a href="/news">Notícias</a>
+    </div>
+    <div class="account">
+      0,00 R$
+      <div>
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <h2>Missões</h2>
+  </div>
+
+  <div class="main-content">
+    <div class="filter">
+      <mat-label>Busque um ativo</mat-label>
+      <mat-select>
+        @for (ativo of ativos; track ativo) {
+          <mat-option [value]="ativo.value">{{ativo.viewValue}}</mat-option>
+        }
+      </mat-select>
+    </div>
+
+  <app-ativo-tabela></app-ativo-tabela>
+
+  </div>
+
+
+
+</div>
