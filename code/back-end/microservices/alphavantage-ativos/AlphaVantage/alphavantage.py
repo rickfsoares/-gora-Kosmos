@@ -11,7 +11,7 @@ class AlphaVantage:
         self.ts = TimeSeries(key=self.api_key[0], output_format='pandas')
 
 
-    def get_stock_data(self, stock: str) -> DataFrame:
+    def  get_stock_data(self, stock: str) -> DataFrame:
         has_data = False
         for key in self.api_key:
             try:
@@ -24,11 +24,11 @@ class AlphaVantage:
                 return data
 
             except Exception as e:
-                logging.error(f"Erro ao buscar dados do ativo {stock} na API Alpha Vantage: {key}")
+                logging.error(f"Erro ao buscar dados do ativo {stock} na API Alpha Vantage: {key} erro: {e}")
                 has_data = False
                 continue
 
         if not has_data:
-            raise Exception("Não foi possível buscar os dados do ativo na API Alpha Vantage com as chaves disponíveis")
+            raise Exception("Não foi possível buscar dados do ativo na API Alpha Vantage")
 
 

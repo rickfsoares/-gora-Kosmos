@@ -14,11 +14,11 @@ class DB:
         self.cursor = self.conn.cursor()
 
     def get_all_stocks(self):
-        self.cursor.execute("SELECT * FROM ativos")
+        self.cursor.execute("SELECT * FROM stocks")
         return self.cursor.fetchall()
 
     def update_stock(self, id_ativo, cotacao, volume):
-        self.cursor.execute("UPDATE ativos SET cotacao = %s, volume = %s WHERE id_ativo = %s", (cotacao, volume, id_ativo))
+        self.cursor.execute("UPDATE stocks SET cotacao = %s, volume = %s WHERE id = %s", (cotacao, volume, id_ativo))
         self.conn.commit()
 
     def close(self):
