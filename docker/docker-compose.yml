@@ -58,7 +58,25 @@ services:
     depends_on:
       - db_ativos
       - redis
+      - agora_kosmos_noticias
 
+  agora_kosmos_noticias:
+    build: ../code/back-end/microservices/agoraKosmosNoticias
+    
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=Ativos
+      - POSTGRES_SCHEMA=public
+      - POSTGRES_HOST=db_ativos
+    
+    ports:
+      - "3001:3000"
+
+    volumes:
+      - ../code/back-end/microservices/agoraKosmosNoticias:/app
+    depends_on:
+      - db_ativos
 
   redis:
     image: redis:7.2.4-alpine3.19

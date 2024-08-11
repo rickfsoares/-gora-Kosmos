@@ -14,13 +14,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_09_013606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ativos", primary_key: "id_ativo", id: :serial, force: :cascade do |t|
-    t.string "nome", null: false
-    t.string "descricao", null: false
-    t.decimal "cotacao", precision: 20, scale: 2, null: false
-    t.integer "volume", null: false
-  end
-
   create_table "stocks", force: :cascade do |t|
     t.string "nome"
     t.string "descricao"
