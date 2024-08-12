@@ -3,6 +3,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NewsComponent } from './news/news.component';
 import { InvestComponent } from './invest/invest.component';
 import { AtivoTabelaComponent } from './ativo-tabela/ativo-tabela.component';
+import { DescricaoAtivoComponent } from './descricao.ativo/descricao.ativo.component';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,13 @@ export const routes: Routes = [
     path: 'ativo',
     component: AtivoTabelaComponent
   },
+
+  {
+    path: 'descricao',
+    component: DescricaoAtivoComponent
+  },
+
+
 
   {
     path: '',

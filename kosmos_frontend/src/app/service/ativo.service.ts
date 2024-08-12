@@ -6,6 +6,7 @@ export interface Ativo {
   precoAtual: number;
   valorAbertura: number;
   valorFechamento: number;
+  descricao: string;
 }
 
 @Injectable({
@@ -17,7 +18,7 @@ export class AtivoService {
 
   getAtivos(): Observable<Ativo[]> {
     const ativos: Ativo[] = [
-      { nome: 'NOME', precoAtual: 20.00, valorAbertura: 15.00, valorFechamento: 27.00 }
+      { nome: 'NOME', precoAtual: 20.00, valorAbertura: 15.00, valorFechamento: 27.00, descricao: 'descriçao do ativo' }
     ];
     return of(ativos);
   }

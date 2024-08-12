@@ -17,7 +17,9 @@
         <td>{{ ativo.valorAbertura | number: '1.2-2' }}</td>
         <td>{{ ativo.valorFechamento | number: '1.2-2' }}</td>
         <td><i class="fas fa-dollar-sign"></i></td>
-        <td><i class="fas fa-info-circle"></i></td>
+        <td ><button mat-button class="fas fa-info-circle" (click)="Descricaoativo(ativo)">
+
+        </button></td>
       </tr>
     </tbody>
   </table>

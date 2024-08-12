@@ -1,0 +1,116 @@
+.container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #1b2e3b;
+  border-radius: 10px;
+  padding: 10px;
+
+}
+
+.header {
+  background-color: #0c1e3e;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .saldo {
+      margin-right: 10px;
+    }
+  }
+}
+
+.side-menu {
+  background-color: #09253f;
+  color: white;
+  width: 200px;
+  height: 100%;
+  padding: 20px;
+
+  .missao {
+    font-weight: bold;
+  }
+}
+
+.content {
+  flex: 1;
+  background-color: #1e4a7b;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .invest-card {
+    background-color: #062030;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .body {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .description {
+        width: 200px;
+        height: 100px;
+        background-color: #09253f;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      .grafico {
+        width: 200px;
+        height: 100px;
+        background-color: #09253f;
+        padding: 10px;
+        border-radius: 5px;
+      }
+    }
+
+    .footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .quantidade, .preco {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .comprar {
+        background-color: #0c1e3e;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}

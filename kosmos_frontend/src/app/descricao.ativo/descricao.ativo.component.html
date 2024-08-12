@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="header">
+    <span class="logo">Ágora Kosmos</span>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">Investir</a>
+      <a href="#">Conta</a>
+      <a href="#">Notícias</a>
+      <span class="saldo"> 0,00 R$</span>
+      <i class="fas fa-user"></i>
+    </div>
+  </div>
+
+  <div class="side-menu">
+    <div class="missao">MISSÕES</div>
+  </div>
+
+  <div class="content">
+    <div class="invest-card">
+      <div class="header">
+        <span>NOME</span>
+        <button class="close">X</button>
+      </div>
+      <div class="body">
+        <div class="description">DESCRIÇÃO</div>
+        <div class="grafico">Gráfico</div>
+      </div>
+      <div class="footer">
+        <div class="quantidade">
+          <label>Quantidade</label>
+          <input type="number" [(ngModel)]="quantidade" />
+        </div>
+        <div class="preco">
+          <label>Preço</label>
+          <span>{{ 34.40 | number:'1.2-2' }}</span>
+        </div>
+        <button class="comprar" (click)="comprar()">Comprar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
