@@ -26,6 +26,7 @@ class NewsService
   private
     def get_first_topic(topics)
       topics.each do |article|
+        puts article["topic"]
         return article["topic"]
       end
 
