@@ -12,13 +12,17 @@ class NewsService
 
     if json_data && json_data['feed']
       json_data['feed'].each do |article|
-        News.new(
-          title: article['title'],
-          summary: article['summary'],
-          url: article['url'],
-          bannerImage: article['banner_image'],
-          topics: Topic.where(nome: get_first_topic(article['topics'])).first
-        ).save
+        topic = Topic.where(nome: get_first_topic(article['topics'])).first
+        unless topic.nil?
+          news = News.new(
+            title: article['title'],
+            summary: article['summary'],
+            url: article['url'],
+            bannerImage: article['banner_image'],
+            topic: topic
+          )
+          news.save
+        end
       end
     end
   end
