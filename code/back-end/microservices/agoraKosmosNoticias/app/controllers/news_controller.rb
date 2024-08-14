@@ -10,18 +10,26 @@ class NewsController < ApplicationController
   def filter_news_by_topic
     topic_choosed = Topic.where(nome: params[:topic]).first
 
-    render json: topic_choosed.news.page(params[:page_filter])
+    render json: topic_choosed.news.page(params[:page])
+
   end
 
+  # GET /news/collect
   def collect_news
     news_service = NewsService.new
     news_service.get_news()
     return "Notícias Salvas"
   end
 
+  def all_pages_of_news
+    pages = News.page(1).total_pages
+    render json: {total_page:pages}
+  end
+
+
   private
     # Only allow a list of trusted parameters through.
     def news_params
-      params.require(:news).permit(:page, :topic, :page_filter)
+      params.require(:news).permit(:page, :topic)
     end
 end

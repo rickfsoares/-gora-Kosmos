@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/news", to: "news#index"
   get "/news/filter", to: "news#filter_news_by_topic"
   get "/news/collect", to: "news#collect_news"
+  get "/news/pages", to: "news#all_pages_of_news"
   get "/topics", to: "topics#index"
   get "up" => "rails/health#show", as: :rails_health_check
 
