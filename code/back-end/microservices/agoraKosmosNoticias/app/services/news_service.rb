@@ -14,6 +14,7 @@ class NewsService
       json_data['feed'].each do |article|
         topic = Topic.where(nome: get_first_topic(article['topics'])).first
         unless topic.nil?
+          puts topic
           news = News.new(
             title: article['title'],
             summary: article['summary'],
@@ -30,7 +31,6 @@ class NewsService
   private
     def get_first_topic(topics)
       topics.each do |article|
-        puts article["topic"]
         return article["topic"]
       end
 
