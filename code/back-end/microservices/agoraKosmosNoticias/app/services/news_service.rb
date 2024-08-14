@@ -1,52 +1,35 @@
 # frozen_string_literal: true
-require 'news_services_pb'
-require 'http'
+require 'net/http'
 
-class NewsService < News::NewsService::Service
-  def get_news(request, _call)
+class NewsService
+  def get_news()
     api_key = ENV['ALPHA_VANTAGE_API_KEY']
-    url = "https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=#{api_key}&page=#{request.page_number}&per_page=#{request.resuts_per_page}"
+    url = URI("https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=W5B31PQTZIVVZTWF")
 
-    response = HTTP.get(url)
+    response = Net::HTTP.get(url)
 
-    json_data = JSON.parse(response.body)
+    json_data = JSON.parse(response)
 
-    news_items = json_data['articles'].map do |article|
-      NewsItem.new(
-        title: article['title'],
-        summary: article['summary'],
-        url: article['url'],
-        banner_image: article['banner_image'],
-        topics: article['topics']
-      )
+    if json_data && json_data['feed']
+      json_data['feed'].each do |article|
+        News.new(
+          title: article['title'],
+          summary: article['summary'],
+          url: article['url'],
+          bannerImage: article['banner_image'],
+          topics: Topic.where(nome: get_first_topic(article['topics'])).first
+        ).save
+      end
     end
-
-    NewsResponse.new(news: news_items)
   end
 
-  def get_news_by_topic(request, _call)
-    api_key = ENV['ALPHA_VANTAGE_API_KEY']
+  private
+    def get_first_topic(topics)
+      topics.each do |article|
+        return article["topic"]
+      end
 
-    if request.topics.empty?
-      raise GRPC::InvalidArgument, "O parâmetro 'topics' é obrigatório"
     end
 
-    url = "https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey=#{api_key}&topics=#{request.topics}&page=#{request.page_number}&per_page=#{request.resuts_per_page}"
+end
 
-    response = HTTP.get(url)
-
-    json_data = JSON.parse(response.body)
-
-    news_items = json_data['articles'].map do |article|
-      NewsItem.new(
-        title: article['title'],
-        summary: article['summary'],
-        url: article['url'],
-        banner_image: article['banner_image'],
-        topics: article['topics']
-      )
-    end
-
-    NewsResponse.new(news: news_items)
-
-  end

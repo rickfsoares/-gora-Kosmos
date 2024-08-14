@@ -22,8 +22,6 @@ message NewsResponse {
 message NewsRequest {
     string function = 1;
     string api_key = 2;
-    int32 page_number = 3;
-    int32 resuts_per_page = 4;
 }
 
 message TopicRequest {
