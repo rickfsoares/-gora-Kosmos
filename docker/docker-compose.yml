@@ -92,9 +92,11 @@ services:
       - "4200:4200"
     volumes:
       - ../code/front-end/kosmos_frontend/:/app
+      - /app/node_modules
 
     depends_on:
       - agora_kosmos
+
 
 
 
