@@ -9,8 +9,8 @@ class NewsController < ApplicationController
 
   def filter_news_by_topic
     topic_choosed = Topic.where(nome: params[:topic]).first
-
-    render json: topic_choosed.news.page(params[:page])
+    pages = topic_choosed.news.page(1).total_pages
+    render json: { news: topic_choosed.news.page(params[:page]), total_pages: pages }
 
   end
 
