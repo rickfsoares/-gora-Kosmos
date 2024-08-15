@@ -40,3 +40,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+# Ignores all tempfiles in agoraKosmosNoticias/app
+./code/back-end/microservices/agoraKosmosNoticias/app/tmp/*
+
