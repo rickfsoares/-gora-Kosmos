@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package news;
+
+service NewsService {
+    rpc GetNews (NewsRequest) returns (NewsResponse) {}
+    rpc GetNewsByTopic (TopicRequest) returns (NewsResponse) {}
+}
+
+message NewsItem {
+    string title = 1;
+    string summary = 2;
+    string url = 3;
+    string banner_image = 4;
+    repeated string topics = 5; 
+}
+
+message NewsResponse {
+    repeated NewsItem news = 1;
+}
+
+message NewsRequest {
+    string function = 1;
+    string api_key = 2;
+}
+
+message TopicRequest {
+    NewsRequest nr = 1;
+    string topic = 2;
+}

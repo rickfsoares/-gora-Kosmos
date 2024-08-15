@@ -1,0 +1,8 @@
+alpha-vantage
+schedule
+pandas
+psycopg2
+flask
+Flask-APScheduler
+redis
+flask-socketio
