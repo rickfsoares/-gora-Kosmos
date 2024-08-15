@@ -1,3 +1,6 @@
+
+node_modules
+
 # Ignores all tempfiles in agoraKosmosNoticias/app
 ./code/back-end/microservices/agoraKosmosNoticias/app/tmp/*
 

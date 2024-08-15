@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="header">
+    <h1>Ágora Kosmos</h1>
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="/invest">Investir</a>
+      <a href="#">Conta</a>
+      <a href="/news">Notícias</a>
+    </div>
+    <div class="account">
+      0,00 R$
+      <div>
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <h2>Missões</h2>
+  </div>
+
+  <div class="content">
+    <div class="invest-card" *ngIf="ativo">
+      <button class="close" (click)="ativo = null">X</button>
+      <div class="header">
+        <h2>{{ ativo.nome }}</h2>
+      </div>
+      <div class="body">
+        <div class="description">{{ ativo.descricao }}</div>
+        <div class="grafico">Gráfico</div>
+      </div>
+      <div class="footer">
+        <div class="quantidade">
+          <label>Quantidade</label>
+          <input type="number" [(ngModel)]="quantidade" min="1" />
+        </div>
+        <div class="preco">
+          <label>Preço</label>
+          <span>{{ ativo.precoAtual | number:'1.2-2' }}</span>
+        </div>
+        <button class="comprar" (click)="comprar()">Comprar</button>
+      </div>
+    </div>
+  </div>
+</div>
