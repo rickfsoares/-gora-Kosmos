@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="header">
+    <h1>Ágora Kosmos</h1>
+    <div class="nav">
+      <a href="#">Home</a>
+      <a href="/invest">Investir</a>
+      <a href="#">Conta</a>
+      <a href="/news">Notícias</a>
+    </div>
+    <div class="account">
+      0,00 R$
+      <div>
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <h2>Missões</h2>
+  </div>
+
+  <div class="main-content">
+    <div class="filter">
+      <select (change)="onChange($event)">
+        @for (item of topics; track item.id) {
+        <option>{{item.nome}}</option>
+        }
+      </select>
+    </div>
+    @for (item of news; track item.id) {
+      <div class="news-item">
+        <div class="news-header"><a href="{{item.url}}">{{item.title}}</a></div>
+        <div class="news-body">
+          <div class="summary">{{item.summary}}</div>
+          <div class="photo"><img src="{{item.bannerImage}}" alt="imagem não encontrada"></div>
+        </div>
+      </div>
+    }
+    <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage" aria-label="Select page" (page)="pageChanged($event)"></mat-paginator>
+  </div>
+</div>
+
+

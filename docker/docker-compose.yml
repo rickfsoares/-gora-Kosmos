@@ -86,7 +86,15 @@ services:
     volumes:
       - ../volumes/redis:/data
 
+  agora_kosmos_frontend:
+    build: ../code/front-end/kosmos_frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ../code/front-end/kosmos_frontend/:/app
 
+    depends_on:
+      - agora_kosmos
 
 
 
