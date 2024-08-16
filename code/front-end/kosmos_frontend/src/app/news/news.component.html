@@ -21,24 +21,22 @@
 
   <div class="main-content">
     <div class="filter">
-      <select>
-        <option>Filtro</option>
+      <select (change)="onChange($event)">
+        @for (item of topics; track item.id) {
+        <option>{{item.nome}}</option>
+        }
       </select>
     </div>
-    <div class="news-item">
-      <div class="news-header">TÍTULO DA NOTÍCIA</div>
-      <div class="news-body">
-        <div class="summary">SUMÁRIO DA NOTÍCIA</div>
-        <div class="photo">FOTO</div>
+    @for (item of news; track item.id) {
+      <div class="news-item">
+        <div class="news-header"><a href="{{item.url}}">{{item.title}}</a></div>
+        <div class="news-body">
+          <div class="summary">{{item.summary}}</div>
+          <div class="photo"><img src="{{item.bannerImage}}" alt="imagem não encontrada"></div>
+        </div>
       </div>
-    </div>
-    <div class="news-item">
-      <div class="news-header">TÍTULO DA NOTÍCIA</div>
-      <div class="news-body">
-        <div class="summary">SUMÁRIO DA NOTÍCIA</div>
-        <div class="photo">FOTO</div>
-      </div>
-    </div>
+    }
+    <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage" aria-label="Select page" (page)="pageChanged($event)"></mat-paginator>
   </div>
 </div>
 

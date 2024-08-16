@@ -78,6 +78,10 @@
   margin-bottom: 10px;
 }
 
+.news-header a {
+  color: white;
+}
+
 .news-body {
   display: flex;
   justify-content: space-between;
@@ -94,5 +98,10 @@
   text-align: center;
   padding: 10px;
   border-radius: 5px;
+}
+
+.photo img {
+  width: 25rem;
+  height: 20rem;
 }
 
