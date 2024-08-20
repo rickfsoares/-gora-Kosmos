@@ -1,14 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { AtivoTabelaComponent } from "../ativo-tabela/ativo-tabela.component";
+import { Ativo, AtivoService } from '../service/ativo.service';
 
-interface Ativo {
-  value: string;
-  viewValue: string;
-}
+
 
 @Component({
   selector: 'app-invest',
@@ -17,16 +15,11 @@ interface Ativo {
   templateUrl: './invest.component.html',
   styleUrl: './invest.component.scss'
 })
-export class InvestComponent {
+export class InvestComponent{
 
-  ativos: Ativo[] = [
-    {value: 'ativo01', viewValue: 'Ativo 01'},
-    {value: 'ativo02', viewValue: 'Ativo 02'},
 
-  ];
 
   
-
 
 
 }

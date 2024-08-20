@@ -12,17 +12,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./descricao.ativo.component.scss']
 })
 export class DescricaoAtivoComponent implements OnInit {
-  ativos$: Observable<Ativo[]>;
+  ativos$: Promise<Ativo[]>;
   ativo: Ativo | null = null;
   quantidade = 1;
+  page: number = 1;
 
   constructor(private ativoService: AtivoService) {
-    this.ativos$ = this.ativoService.getAtivos();
+    this.ativos$ = this.ativoService.getAtivos(this.page);
   }
 
   ngOnInit(): void {
 
-    this.ativos$.subscribe(ativos => {
+    this.ativos$.then(ativos => {
       if (ativos.length > 0) {
         this.ativo = ativos[0];
       }

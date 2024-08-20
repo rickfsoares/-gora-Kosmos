@@ -39,6 +39,5 @@ module AgoraKosmos
           credentials: true  # Se estiver usando cookies ou autenticação
       end
     end
-
   end
 end
