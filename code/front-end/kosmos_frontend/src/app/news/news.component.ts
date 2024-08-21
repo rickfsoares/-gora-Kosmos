@@ -24,22 +24,19 @@ export class NewsComponent implements OnInit {
   totalPages: number = 1;
   totalItems = 1;
   pageSize = 5;
-  currentPage: number = 1;
+  currentPage: number = 0;
   isFiltered: boolean = false;
   topic: string = ''
 
   constructor(private newsService: NewsService, private messageService: MessageService) { }
 
   pageChanged(event: PageEvent) {
-    this.currentPage = event.pageIndex;
-
-    if(this.currentPage == 0) {
-      this.currentPage = 1;
-    }
 
     if (this.isFiltered) {
-     this.getNewsByTopic(this.topic, this.currentPage);
+      this.currentPage = event.pageIndex;
+      this.getNewsByTopic(this.topic, this.currentPage + 1); // soma feita para que coincida com o número da página que vem do back-end
     } else {
+        this.currentPage = event.pageIndex + 1;
         this.getNews()
       }
   }
@@ -47,8 +44,7 @@ export class NewsComponent implements OnInit {
   onChange(event: any) {
     this.topic = event.target.value;
     this.isFiltered = true;
-    this.currentPage = 1;
-    this.getNewsByTopic(event.target.value, this.currentPage);
+    this.getNewsByTopic(event.target.value, this.currentPage = 0); // necessário colocar deixar o currentPage como 0, para que carregue os dados da página inicial das notícias
   }
 
   ngOnInit(): void {

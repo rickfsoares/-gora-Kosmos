@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AtivoService, Ativo } from '../service/ativo.service';
 import { Observable } from 'rxjs';
+import { Stock } from '../models/stock';
 
 @Component({
   selector: 'app-descricao.ativo',
@@ -12,8 +13,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./descricao.ativo.component.scss']
 })
 export class DescricaoAtivoComponent implements OnInit {
-  ativos$: Promise<Ativo[]>;
-  ativo: Ativo | null = null;
+  ativos$: Observable<Stock[]>;
+  ativo: Stock | null = null;
   quantidade = 1;
   page: number = 1;
 
@@ -23,17 +24,17 @@ export class DescricaoAtivoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ativos$.then(ativos => {
-      if (ativos.length > 0) {
-        this.ativo = ativos[0];
-      }
-    });
+   // this.ativos$.then(ativos => {
+   //   if (ativos.length > 0) {
+   //     this.ativo = ativos[0];
+   //   }
+   // });
   }
 
   comprar(): void {
-    if (this.ativo) {
-      console.log(`Comprando ${this.quantidade} de ${this.ativo.nome} por ${this.ativo.precoAtual}`);
-
-    }
+//    if (this.ativo) {
+//      console.log(`Comprando ${this.quantidade} de ${this.ativo.nome} por ${this.ativo.precoAtual}`);
+//
+//    }
   }
 }

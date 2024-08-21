@@ -6,6 +6,8 @@ COPY . .
 RUN npm install -g @angular/cli@17
 
 RUN npm install
+RUN npm install axios --save
+RUN npm install @types/axios
 RUN chown -R node:node /app
 
 

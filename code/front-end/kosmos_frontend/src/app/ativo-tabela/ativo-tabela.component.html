@@ -28,11 +28,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ativo of ativos">
+      <tr *ngFor="let ativo of stocks">
         <td>{{ ativo.nome }}</td>
-        <td>{{ ativo.precoAtual | number: '1.2-2' }}</td>
-        <td>{{ ativo.valorAbertura | number: '1.2-2' }}</td>
-        <td>{{ ativo.valorFechamento | number: '1.2-2' }}</td>
+        <td>{{ ativo.cotacao | number: '1.2-2' }}</td>
+        <td>{{ ativo.cotacao| number: '1.2-2' }}</td>
+        <td>{{ ativo.cotacao| number: '1.2-2' }}</td>
         <td><i class="fas fa-dollar-sign"></i></td>
         <td ><button mat-button class="fas fa-info-circle" (click)="Descricaoativo(ativo)">
 
@@ -40,7 +40,7 @@
       </tr>
     </tbody>
   </table>
-  <mat-paginator 
+  <mat-paginator
                  [pageSize]="pageSize"
                  [pageSizeOptions]="[5, 10, 20]"
                  (page)="onPageChange($event)">

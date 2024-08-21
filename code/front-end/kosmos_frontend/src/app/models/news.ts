@@ -28,32 +28,4 @@ export class News {
                 this.topic_id = topic_id;
   }
 
-//  public getTitle(): string {
-//    return this._title;
-//  }
-//
-//  public getSummary():string {
-//    return this._summary;
-//  }
-//
-//  public getUrl():string {
-//    return this._url;
-//  }
-//
-//  public getBannerImage():string {
-//    return this._bannerImage;
-//  }
-//
-//  public getCreatedAt():string {
-//    return this._created_at;
-//  }
-//
-//  public getUpdatedAt():string {
-//    return this._updated_at;
-//  }
-//
-//  public getTopicId() {
-//    return this._topic_id;
-//  }
-
 }

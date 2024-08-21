@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { Stock } from '../models/stock';
 
 
 @Component({
@@ -21,25 +22,32 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class AtivoTabelaComponent implements OnInit {
 
-  ativos: Ativo[] = [];
+  stocks: Stock[] = [];
   currentPage: number = 1;
   pageSize = 10;
   nomeAtivoSearch = '';
-  
+
 
   constructor(
-    @Inject(AtivoService) private ativoService: AtivoService,
+    private ativoService: AtivoService,
     private router: Router, InvestService: InvestService) { }
-  
-  
+
+
 
   ngOnInit(): void {
-    this.ativoService.getAtivos(this.currentPage).then(ativos => {
-      this.ativos = ativos;
-    });
+   // this.ativoService.getAtivos(this.currentPage).then(ativos => {
+   //   this.ativos = ativos;
+   // });
+    this.getStocks()
   }
 
-  Descricaoativo(ativo: Ativo) {
+  getStocks(): void {
+    this.ativoService.getAtivos(this.currentPage).subscribe(stocks => {
+      this.stocks = stocks
+    })
+  }
+
+  Descricaoativo(ativo: Stock) {
     this.router.navigate(['/descricao',]);
   }
 
@@ -49,13 +57,17 @@ export class AtivoTabelaComponent implements OnInit {
 
   }
 
-  procuraAtivos(){
-    this.ativoService.getAtivos(this.currentPage).then(response => this.ativos = response)
-    // this.ativoService.getTotalPages().then(response => this.)
+  onSearchChange() {
+    this.ativoService.getAtivoByNome(this.nomeAtivoSearch)
   }
 
-  onSearchChange() {
-    this.ativoService.getAtivoByNome(this.nomeAtivoSearch).then(response => this.ativos = response)
-  }
-    
+ // procuraAtivos(){
+ //   this.ativoService.getAtivos(this.currentPage).then(response => this.ativos = response)
+ //   // this.ativoService.getTotalPages().then(response => this.)
+ // }
+
+ // onSearchChange() {
+ //   this.ativoService.getAtivoByNome(this.nomeAtivoSearch).then(response => this.ativos = response)
+ // }
+
 }
