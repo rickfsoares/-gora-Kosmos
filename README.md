@@ -14,14 +14,30 @@ Este projeto utiliza Docker Compose para facilitar a configuração e execução
 - **`make up`**  
   Sobe os serviços definidos no `docker-compose.yml`.
 
+  ```bash
+    make up
+  ```
+
 - **`make up-build`**  
   Sobe os serviços com a opção de recriar as imagens. Use este comando quando modificar o `Dockerfile` ou as dependências.
+
+    ```bash
+        make up-build
+    ```
 
 - **`make build`**  
   Recria as imagens dos serviços sem cache.
 
+    ```bash
+        make build
+    ```
+
 - **`make upd`**  
   Sobe os serviços em segundo plano (`detached mode`) e recria as imagens, se necessário.
+
+    ```bash
+        make upd
+    ```
 
 ### Parar e Remover os Serviços
 
@@ -90,3 +106,4 @@ Este projeto utiliza Docker Compose para facilitar a configuração e execução
 
 - Certifique-se de ter o Docker e o Docker Compose instalados e configurados corretamente no seu ambiente de desenvolvimento.
 - Para qualquer alteração nas dependências ou no ambiente de execução, utilize os comandos `make up-build` ou `make build` conforme necessário.
+- Para o sistema operacional Windows, utilize o WSL2 para executar os comandos.
