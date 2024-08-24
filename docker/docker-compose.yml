@@ -99,6 +99,27 @@ services:
     depends_on:
       - agora_kosmos
 
+  agora_kosmos_transacoes:
+    build: ../code/back-end/microservices/agoraTransacoes
+
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=Ativos
+      - POSTGRES_SCHEMA=public
+      - POSTGRES_HOST=db_ativos
+
+    ports:
+      - "3003:3000"
+
+    volumes:
+      - ../code/back-end/microservices/agoraTransacoes:/app
+
+    depends_on:
+      - db_ativos
+      - agora_kosmos
+
+
 
 
 
