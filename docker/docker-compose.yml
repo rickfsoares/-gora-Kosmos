@@ -1,3 +1,4 @@
+
 services:
   db_ativos:
     image: postgres:16.2-alpine3.19
@@ -71,6 +72,9 @@ services:
       - POSTGRES_DB=Ativos
       - POSTGRES_SCHEMA=public
       - POSTGRES_HOST=db_ativos
+
+    env_file:
+      - ./agora.env
     
     ports:
       - "3001:3000"
@@ -99,6 +103,16 @@ services:
     depends_on:
       - agora_kosmos
 
+  rabbitmq:
+    image: rabbitmq:3.13.6-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    
+    volumes:
+      - ../volumes/rabbitmq:/var/lib/rabbitmq
+
+
   agora_kosmos_transacoes:
     build: ../code/back-end/microservices/agoraTransacoes
 
@@ -115,6 +129,9 @@ services:
     volumes:
       - ../code/back-end/microservices/agoraTransacoes:/app
 
+    env_file:
+      - ./agora.env
+      
     depends_on:
       - db_ativos
       - agora_kosmos

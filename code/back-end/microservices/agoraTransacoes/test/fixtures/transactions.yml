@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  idMercadoPago: 1
+  status: MyString
+  valor: 9.99
+  qrCodeBase64: MyString
+  qrCode: MyString
+
+two:
+  idMercadoPago: 1
+  status: MyString
+  valor: 9.99
+  qrCodeBase64: MyString
+  qrCode: MyString
