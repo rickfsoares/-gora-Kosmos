@@ -1,3 +1,6 @@
+volumes:
+  db_ativos_volume:
+
 services:
   db_ativos:
     image: postgres:16.2-alpine3.19
@@ -5,43 +8,35 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: Ativos
-
     ports:
       - "5432:5432"
-    
     volumes:
-      - ../volumes/db_acoes:/var/lib/postgresql/data
+      - db_ativos_volume:/var/lib/postgresql/data
 
   app_ativos:
     build: 
-      context: ./images/
+      context: docker/images/
       dockerfile: alphavatangeAtivos
-      
     env_file:
-      - ./agora.env
+      - ./docker/agora.env
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=Ativos  
       - POSTGRES_SCHEMA=public
       - POSTGRES_HOST=db_ativos
-      # - ALPHA_VANTAGE_API_KEY=${ALPHA_VANTAGE_API_KEY}
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-
     ports:
       - "5000:5000"
-
     volumes:
-      - ../code/back-end/microservices/alphavantage-ativos:/home/app
-
+      - ./code/back-end/microservices/alphavantage-ativos:/home/app
     depends_on:
       - db_ativos
       - redis
 
   agora_kosmos:
-    build: ../code/back-end/microservices/agoraKosmos
-
+    build: ./code/back-end/microservices/agoraKosmos
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -50,33 +45,27 @@ services:
       - POSTGRES_HOST=db_ativos
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-
     ports:
       - "3000:3000"
-
     volumes:
-      - ../code/back-end/microservices/agoraKosmos:/app
-
+      - ./code/back-end/microservices/agoraKosmos:/app
     depends_on:
       - db_ativos
       - redis
       - agora_kosmos_noticias
 
   agora_kosmos_noticias:
-    build: ../code/back-end/microservices/agoraKosmosNoticias
-    
+    build: ./code/back-end/microservices/agoraKosmosNoticias
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=Ativos
       - POSTGRES_SCHEMA=public
       - POSTGRES_HOST=db_ativos
-    
     ports:
       - "3001:3000"
-
     volumes:
-      - ../code/back-end/microservices/agoraKosmosNoticias:/app
+      - ./code/back-end/microservices/agoraKosmosNoticias:/app
     depends_on:
       - db_ativos
 
@@ -84,37 +73,31 @@ services:
     image: redis:7.2.4-alpine3.19
     ports:
       - "6379:6379"
-    
     volumes:
-      - ../volumes/redis:/data
+      - ./volumes/redis:/data
 
   agora_kosmos_frontend:
-    build: ../code/front-end/kosmos_frontend
+    build: ./code/front-end/kosmos_frontend
     ports:
       - "4200:4200"
     volumes:
-      - ../code/front-end/kosmos_frontend/:/app
+      - ./code/front-end/kosmos_frontend/:/app
       - /app/node_modules
-
     depends_on:
       - agora_kosmos
 
   agora_kosmos_transacoes:
-    build: ../code/back-end/microservices/agoraTransacoes
-
+    build: code/back-end/microservices/agoraTransacoes
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=Ativos
       - POSTGRES_SCHEMA=public
       - POSTGRES_HOST=db_ativos
-
     ports:
       - "3003:3000"
-
     volumes:
-      - ../code/back-end/microservices/agoraTransacoes:/app
-
+      - ./code/back-end/microservices/agoraTransacoes:/app
     depends_on:
       - db_ativos
       - agora_kosmos
