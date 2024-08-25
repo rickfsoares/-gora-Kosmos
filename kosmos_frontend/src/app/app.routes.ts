@@ -4,6 +4,9 @@ import { NewsComponent } from './news/news.component';
 import { InvestComponent } from './invest/invest.component';
 import { AtivoTabelaComponent } from './ativo-tabela/ativo-tabela.component';
 import { DescricaoAtivoComponent } from './descricao.ativo/descricao.ativo.component';
+import { InvestimentosComponent } from './investimentos-component/investimentos-component.component';
+import { RankingComponent } from './ranking/ranking.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
   {
@@ -30,11 +33,24 @@ export const routes: Routes = [
     component: DescricaoAtivoComponent
   },
 
+  {
+    path: 'investimentos',
+    component: InvestimentosComponent
+  },
 
+  {
+    path: 'ranking',
+    component: RankingComponent
+  },
+
+  {
+    path: 'home',
+    component: HomeComponent
+  },
 
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
 
