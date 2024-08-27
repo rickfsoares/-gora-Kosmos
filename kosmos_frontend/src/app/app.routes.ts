@@ -7,6 +7,7 @@ import { DescricaoAtivoComponent } from './descricao.ativo/descricao.ativo.compo
 import { InvestimentosComponent } from './investimentos-component/investimentos-component.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { HomeComponent } from './home/home.component';
+import { ListaPendentesComponent } from './lista-pendentes/lista-pendentes.component';
 
 export const routes: Routes = [
   {
@@ -41,6 +42,11 @@ export const routes: Routes = [
   {
     path: 'ranking',
     component: RankingComponent
+  },
+
+  {
+    path: 'lista-pendentes',
+    component: ListaPendentesComponent
   },
 
   {
