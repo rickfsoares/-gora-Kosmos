@@ -23,9 +23,11 @@ import { Stock } from '../models/stock';
 export class AtivoTabelaComponent implements OnInit {
 
   stocks: Stock[] = [];
-  currentPage: number = 1;
-  pageSize = 10;
-  nomeAtivoSearch = '';
+  currentPage: number = 0;
+  pageSize: number = 5;
+  nomeAtivoSearch: string = '';
+  totalItems: number = 1;
+  totalPages: number = 1;
 
 
   constructor(
@@ -35,39 +37,53 @@ export class AtivoTabelaComponent implements OnInit {
 
 
   ngOnInit(): void {
-   // this.ativoService.getAtivos(this.currentPage).then(ativos => {
-   //   this.ativos = ativos;
-   // });
-    this.getStocks()
+    this.getStocks();
+    this.getTotalPages()
   }
 
   getStocks(): void {
-    this.ativoService.getAtivos(this.currentPage).subscribe(stocks => {
+    this.ativoService.getAtivos(this.currentPage + 1).subscribe(stocks => {
       this.stocks = stocks
+
+      //console.log('current page - getStocks: ' + this.currentPage + 1);
     })
   }
 
-  Descricaoativo(ativo: Stock) {
-    this.router.navigate(['/descricao',]);
+  Descricaoativo(ativo: Stock): void {
+    this.router.navigate(['/descricao', ativo.nome]);
   }
 
-  onPageChange(event: PageEvent){
+  onPageChange(event: PageEvent): void{
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize
+    //console.log('event.pageIndex - onPageChange: ' + event.pageIndex)
+    this.getStocks();
 
   }
 
-  onSearchChange() {
-    this.ativoService.getAtivoByNome(this.nomeAtivoSearch)
+  onSearchChange(): void {
+    if (this.nomeAtivoSearch.trim()) {
+      this.ativoService.getAtivoByNome(this.nomeAtivoSearch.toUpperCase().trim()).subscribe(stock => {
+        this.stocks = stock;
+        this.totalPages = 1;
+        this.totalItems = 1;
+      })
+    } else {
+      this.currentPage = 0;
+      this.getTotalPages();
+      this.getStocks();
+    }
+
   }
 
- // procuraAtivos(){
- //   this.ativoService.getAtivos(this.currentPage).then(response => this.ativos = response)
- //   // this.ativoService.getTotalPages().then(response => this.)
- // }
+  getTotalPages(): void {
+    this.ativoService.getTotalPages().subscribe(pages => {
+      this.totalPages = pages.total_page
+      this.calcTotalItem(this.totalPages)
+    })
+  }
 
- // onSearchChange() {
- //   this.ativoService.getAtivoByNome(this.nomeAtivoSearch).then(response => this.ativos = response)
- // }
-
+  calcTotalItem(totalPages: number): void {
+    this.totalItems = totalPages * 5;
+  }
 }

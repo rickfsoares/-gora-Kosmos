@@ -26,7 +26,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'descricao',
+    path: 'descricao/:nome',
     component: DescricaoAtivoComponent
   },
 

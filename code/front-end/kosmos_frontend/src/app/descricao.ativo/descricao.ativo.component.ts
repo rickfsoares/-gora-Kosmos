@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AtivoService, Ativo } from '../service/ativo.service';
 import { Observable } from 'rxjs';
 import { Stock } from '../models/stock';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-descricao.ativo',
@@ -13,28 +14,34 @@ import { Stock } from '../models/stock';
   styleUrls: ['./descricao.ativo.component.scss']
 })
 export class DescricaoAtivoComponent implements OnInit {
-  ativos$: Observable<Stock[]>;
-  ativo: Stock | null = null;
+  ativo: Stock[] = [];
   quantidade = 1;
   page: number = 1;
 
-  constructor(private ativoService: AtivoService) {
-    this.ativos$ = this.ativoService.getAtivos(this.page);
+  constructor(private ativoService: AtivoService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getAtivo();
+  }
 
-   // this.ativos$.then(ativos => {
-   //   if (ativos.length > 0) {
-   //     this.ativo = ativos[0];
-   //   }
-   // });
+  getAtivo() {
+    let nomeAtivo = this.route.snapshot.paramMap.get('nome') ?? '';
+
+    this.ativoService.getAtivoByNome(nomeAtivo).subscribe(stock => {
+      this.ativo = stock;
+      console.log(this.ativo);
+    })
   }
 
   comprar(): void {
-//    if (this.ativo) {
-//      console.log(`Comprando ${this.quantidade} de ${this.ativo.nome} por ${this.ativo.precoAtual}`);
-//
-//    }
+    //    if (this.ativo) {
+    //      console.log(`Comprando ${this.quantidade} de ${this.ativo.nome} por ${this.ativo.precoAtual}`);
+    //
+    //    }
+  }
+
+  returnToInvest(): void {
+    this.router.navigate(['invest']);
   }
 }
