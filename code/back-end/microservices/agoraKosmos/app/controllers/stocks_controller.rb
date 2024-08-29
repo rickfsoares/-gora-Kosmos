@@ -17,7 +17,8 @@ class StocksController < ApplicationController
     service = RedisService.new
     currency = service.get_data_stock(@stock.nome)
     currency = currency.map {|element| JSON.parse(element)}
-    render json: {stock: @stock, opening_price: @stock.opening_price, closing_price: @stock.closing_price , currency: currency}
+    render json: {stock: @stock,currency: currency}
+
   end
 
   def seach_stock

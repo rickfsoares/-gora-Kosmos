@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-//import axios from 'axios';
 import { Stock } from '../models/stock';
 import { Page } from '../models/page';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Currency } from '../models/currency';
 
 export interface Ativo {
   nome: string;
@@ -11,20 +11,6 @@ export interface Ativo {
   valorAbertura: number;
   valorFechamento: number;
   descricao: string;
-}
-
-interface AtivoAplhaVantage {
-  cotacao: number,
-  created_at: Date,
-  descricao: string,
-  id: number,
-  nome: string,
-  updated_at: Date,
-  volume: number
-}
-
-interface TotalPages {
-  total_pages: number
 }
 
 @Injectable({
@@ -49,10 +35,15 @@ export class AtivoService {
   }
 
   getAtivos(numberOfPage: number): Observable<Stock[]> {
-
     const url = `${this.baseUrl}/stocks?page=${numberOfPage}`;
 
     return this.http.get<Stock[]>(url);
 
   }
+
+  getTimeSeries(stockId: number): Observable<{ stock: Stock, currency: Currency[] }> {
+    const url = `${this.baseUrl}/stocks/${stockId}`;
+    return this.http.get<{ stock: Stock, currency: Currency[] }>(url);
+  }
+
 }

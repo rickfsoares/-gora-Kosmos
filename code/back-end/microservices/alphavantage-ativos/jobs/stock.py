@@ -21,7 +21,7 @@ def update_stock_data():
         nome = stock[1]
         try:
             data: pandas.DataFrame = alpha_vantage.get_stock_data(nome)
-            fist_row: pandas.DataFrame = data.iloc[0].values
+            fist_row: pandas.DataFrame = data.iloc[0]
 
             opening_price = float(fist_row['1. open'])
             closing_price = float(fist_row['4. close'])
@@ -33,6 +33,7 @@ def update_stock_data():
             db.update_stock(id_stock, current_price, volume, opening_price, closing_price)
             redis.save_stock_data(data, nome)
         except Exception as e:
+            logging.error(e)
             logging.error(f"Erro ao buscar dados do ativo {nome} com as chaves disponíveis")
 
 
