@@ -135,6 +135,7 @@ services:
     depends_on:
       - db_ativos
       - agora_kosmos
+      - rabbitmq
 
 
 
