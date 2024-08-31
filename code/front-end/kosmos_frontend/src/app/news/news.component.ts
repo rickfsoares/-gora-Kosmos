@@ -7,13 +7,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
+import { MainHeaderComponent } from '../main-header/main-header.component';
+import { SideMissionBarComponent } from '../side-mission-bar/side-mission-bar.component';
 
 @Component({
   selector: 'app-news',
   standalone: true,
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss'],
-  imports: [MatPaginatorModule, CommonModule]
+  imports: [MatPaginatorModule, CommonModule, MainHeaderComponent, SideMissionBarComponent]
 })
 export class NewsComponent implements OnInit {
 
