@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_14_210030) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_31_122310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,39 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_210030) do
     t.string "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "idMercadoPago"
+    t.string "status"
+    t.decimal "valor"
+    t.string "qrCodeBase64"
+    t.string "qrCode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "dataCriacao", precision: nil
+    t.integer "id_usuario"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "endereco"
+    t.string "uf"
+    t.string "cidade"
+    t.string "apelido"
+    t.string "estadoCivil"
+    t.string "profissao"
+    t.decimal "renda"
+    t.string "jti"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["jti"], name: "index_users_on_jti"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "news", "topics"

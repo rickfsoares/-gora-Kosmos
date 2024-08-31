@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get "/api/news/filter", to: "news#filter_news"
   get "/api/news/pages", to: "news#get_all_pages_of_news"
   get "/api/topics", to: "topic#index"
+  get "/api/transactions", to: "transaction#index"
+  post "/api/transactions", to: "transaction#criar_transacao"
+  patch "/api/transactions/saldo", to: "transaction#atualizar_saldo"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

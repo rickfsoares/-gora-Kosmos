@@ -4,7 +4,7 @@ require 'mercadopago'
 class TransacaoService
     @@mercadoPago = Mercadopago::SDK.new(ENV['ACESS_TOKEN'])
     
-    def self.criar_transacao(valor) 
+    def self.criar_transacao(valor, id_usuario) 
         payment_request = {
             transaction_amount: valor,
             description: 'ativo',
@@ -26,7 +26,8 @@ class TransacaoService
             valor: valor, 
             qrCodeBase64: result['point_of_interaction']['transaction_data']['qr_code_base64'], 
             qrCode: result['point_of_interaction']['transaction_data']['qr_code'], 
-            dataCriacao: result["date_created"])
+            dataCriacao: result["date_created"],
+            id_usuario: id_usuario)
         transaction.save
         return transaction
 

@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_30_203521) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_31_170141) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.string "summary"
+    t.string "url"
+    t.string "bannerImage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "topic_id", null: false
+    t.index ["topic_id"], name: "index_news_on_topic_id"
+  end
 
   create_table "stocks", force: :cascade do |t|
     t.string "nome"
@@ -21,6 +32,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_30_203521) do
     t.integer "volume"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "idMercadoPago"
+    t.string "status"
+    t.decimal "valor"
+    t.string "qrCodeBase64"
+    t.string "qrCode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "dataCriacao", precision: nil
+    t.integer "id_usuario"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,9 +68,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_30_203521) do
     t.string "profissao"
     t.decimal "renda"
     t.string "jti"
+    t.decimal "saldo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "news", "topics"
 end
