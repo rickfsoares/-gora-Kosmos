@@ -11,7 +11,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Stock } from '../models/stock';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ModalActionComponent, ModalActionData } from '../modal-action/modal-action.component';
 
 @Component({
   selector: 'app-ativo-tabela',
@@ -32,7 +33,9 @@ export class AtivoTabelaComponent implements OnInit {
 
   constructor(
     private ativoService: AtivoService,
-    private router: Router, InvestService: InvestService) { }
+    private router: Router,
+    InvestService: InvestService,
+    private dialog: MatDialog) { }
 
 
 
@@ -85,5 +88,23 @@ export class AtivoTabelaComponent implements OnInit {
 
   calcTotalItem(totalPages: number): void {
     this.totalItems = totalPages * 5;
+  }
+
+  openModalAction(ativo: Stock, acao: 'comprar' | 'vender'): void {
+    const dialogRef = this.dialog.open<ModalActionComponent, ModalActionData>(ModalActionComponent, {
+      width: '400px',
+      data: {
+        ativoNome: ativo.nome,
+        acao: acao,
+        preco: ativo.cotacao
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(`Ação realizada: ${result.acao}, Quantidade: ${result.quantidade}`);
+        // Aqui você pode adicionar lógica adicional para processar o resultado do modal
+      }
+    });
   }
 }

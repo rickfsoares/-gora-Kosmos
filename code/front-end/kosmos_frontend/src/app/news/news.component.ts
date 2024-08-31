@@ -55,6 +55,7 @@ export class NewsComponent implements OnInit {
 
   getNews(): void {
     this.newsService.getNews(this.currentPage).subscribe(news => {
+      console.log(news);
       this.news = news
     })
   }
