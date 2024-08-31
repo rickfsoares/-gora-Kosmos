@@ -1,9 +1,11 @@
 class StocksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_stock, only: %i[ show ]
 
   # GET /stocks
   def index
     @stocks = Stock.page(params[:page])
+     puts current_user.id
     render json: @stocks
   end
 
