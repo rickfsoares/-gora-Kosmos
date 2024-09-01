@@ -8,6 +8,7 @@ import { InvestimentosComponent } from './investimentos-component/investimentos-
 import { RankingComponent } from './ranking/ranking.component';
 import { HomeComponent } from './home/home.component';
 import { ListaPendentesComponent } from './lista-pendentes/lista-pendentes.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 export const routes: Routes = [
   {
@@ -52,6 +53,11 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+
+  {
+    path: 'cadastro',
+    component: CadastroComponent
   },
 
   {
