@@ -3,7 +3,7 @@
     <h1>Bem-vindo a Ágora Kosmos</h1>
     <p>Para agilizar a abertura da sua conta, tenha um documento em mãos. Pedimos essa informação apenas por questões regulatórias.
       Não se preocupe, seus dados estão protegidos aqui na Ágora kosmos .</p>
-    <form>
+    <form (ngSubmit)="onSubmit()">
       <label for="nome">Nome Completo</label>
       <input type="text" id="nome" name="nome" required>
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './cadastro.component.scss'
 })
 export class CadastroComponent {
+  constructor(private router: Router) {}
+
+  onSubmit() {
+    this.router.navigate(['/cadastro2']);
+  }
 
 }

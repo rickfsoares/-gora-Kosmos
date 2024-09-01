@@ -9,6 +9,7 @@ import { RankingComponent } from './ranking/ranking.component';
 import { HomeComponent } from './home/home.component';
 import { ListaPendentesComponent } from './lista-pendentes/lista-pendentes.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { Cadastro2Component } from './cadastro2/cadastro2.component';
 
 export const routes: Routes = [
   {
@@ -58,6 +59,11 @@ export const routes: Routes = [
   {
     path: 'cadastro',
     component: CadastroComponent
+  },
+
+  {
+    path: 'cadastro2',
+    component: Cadastro2Component
   },
 
   {
