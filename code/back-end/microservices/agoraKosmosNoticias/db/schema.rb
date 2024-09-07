@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_31_122310) do
     t.integer "volume"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "opening_price"
+    t.decimal "closing_price"
   end
 
   create_table "topics", force: :cascade do |t|
