@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get "/api/transactions", to: "transaction#index"
   post "/api/transactions", to: "transaction#criar_transacao"
   patch "/api/transactions/saldo", to: "transaction#atualizar_saldo"
+  post "/api/investments", to: "investment#create"
+  get "/api/investments", to: "investment#index"
+  delete "/api/investments", to: "investment#vender"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
