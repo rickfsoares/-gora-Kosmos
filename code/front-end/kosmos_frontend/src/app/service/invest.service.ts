@@ -15,6 +15,7 @@ export class InvestService {
   getInvestimentos() {
     return this.investimento$;
   }
+
   private investimentoSubject = new BehaviorSubject<Investimento>({
     nome: 'Ativo X',
     descricao: 'Descrição do ativo',

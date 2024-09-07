@@ -1,3 +1,22 @@
+
+<form (ngSubmit)="onSearchChange()">
+  <!-- Search Input Field -->
+  <mat-form-field appearance="fill">
+    <mat-label>Busque um ativo</mat-label>
+    <input
+      matInput
+      placeholder="Ex: IBM"
+      [(ngModel)]="nomeAtivoSearch"
+      name="searchQuery"
+    />
+  </mat-form-field>
+
+  <!-- Search Button -->
+  <button mat-raised-button color="primary" type="submit" class="btn">
+    Buscar
+  </button>
+</form>
+
 <div class="table-container">
   <table>
     <thead>
@@ -11,17 +30,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ativo of ativos">
+      <tr *ngFor="let ativo of stocks">
         <td>{{ ativo.nome }}</td>
-        <td>{{ ativo.precoAtual | number: '1.2-2' }}</td>
-        <td>{{ ativo.valorAbertura | number: '1.2-2' }}</td>
-        <td>{{ ativo.valorFechamento | number: '1.2-2' }}</td>
-        <td><i class="fas fa-dollar-sign"></i></td>
-        <td ><button mat-button class="fas fa-info-circle" (click)="Descricaoativo(ativo)">
-
-        </button></td>
+        <td>{{ ativo.cotacao | number: '1.2-2' }}</td>
+        <td>{{ ativo.opening_price | number: '1.2-2' }}</td>
+        <td>{{ ativo.closing_price | number: '1.2-2' }}</td>
+        <td><button mat-button class="fas fa-dollar-sign" (click)="openModalAction(ativo, 'comprar')"></button></td>
+        <td ><button mat-button class="fas fa-info-circle" (click)="Descricaoativo(ativo)"></button></td>
       </tr>
     </tbody>
   </table>
+  <mat-paginator [length]="totalItems" [pageSize]="pageSize" [pageIndex]="currentPage" aria-label="Select page" (page)="onPageChange($event)">
+  </mat-paginator>
 </div>
 

@@ -9,7 +9,6 @@ import { RankingComponent } from './ranking/ranking.component';
 
 
 
-
 @Component({
   selector: 'app-root',
   standalone: true,

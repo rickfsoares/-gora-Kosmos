@@ -61,6 +61,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json",
+            "buildTarget": "kosmos_frontend:build"
+          },
           "configurations": {
             "production": {
               "buildTarget": "kosmos_frontend:build:production"
@@ -99,5 +103,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -11,6 +11,7 @@ import { ListaPendentesComponent } from './lista-pendentes/lista-pendentes.compo
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { Cadastro2Component } from './cadastro2/cadastro2.component';
 
+
 export const routes: Routes = [
   {
     path: 'login',
@@ -29,11 +30,6 @@ export const routes: Routes = [
   {
     path: 'ativo',
     component: AtivoTabelaComponent
-  },
-
-  {
-    path: 'descricao',
-    component: DescricaoAtivoComponent
   },
 
   {
@@ -67,8 +63,13 @@ export const routes: Routes = [
   },
 
   {
+    path: 'descricao/:nome',
+    component: DescricaoAtivoComponent
+  },
+
+  {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
 

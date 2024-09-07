@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Stock } from '../models/stock';
+import { Page } from '../models/page';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Currency } from '../models/currency';
 
 export interface Ativo {
   nome: string;
@@ -14,16 +18,31 @@ export interface Ativo {
 })
 export class AtivoService {
 
-  constructor() { }
+  private baseUrl = "http://localhost:3000/api"
+  constructor(private http: HttpClient) {
+   }
 
-  getAtivos(): Observable<Ativo[]> {
-    const ativos: Ativo[] = [
-      { nome: 'Ativo 1', precoAtual: 20.00, valorAbertura: 15.00, valorFechamento: 27.00, descricao: 'descriçao do ativo' },
-      { nome: 'Ativo 2', precoAtual: 35.00, valorAbertura: 30.00, valorFechamento: 40.00, descricao: 'Descrição do Ativo 2'}
-    ];
-    return of(ativos);
+  getTotalPages(): Observable<Page> {
+    const url = `${this.baseUrl}/stocks/pages`;
+
+    return this.http.get<Page>(url);
+  }
+
+  getAtivoByNome(nome: string): Observable<Stock[]> {
+    const url = `${this.baseUrl}/stocks/search?nome=${nome}`
+
+    return this.http.get<Stock[]>(url);
+  }
+
+  getAtivos(numberOfPage: number): Observable<Stock[]> {
+    const url = `${this.baseUrl}/stocks?page=${numberOfPage}`;
+
+    return this.http.get<Stock[]>(url);
 
   }
 
-
+  getTimeSeries(stockId: number): Observable<{ stock: Stock, currency: Currency[] }> {
+    const url = `${this.baseUrl}/stocks/${stockId}`;
+    return this.http.get<{ stock: Stock, currency: Currency[] }>(url);
+  }
 }

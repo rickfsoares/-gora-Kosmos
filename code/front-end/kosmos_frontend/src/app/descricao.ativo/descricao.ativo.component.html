@@ -20,14 +20,14 @@
   </div>
 
   <div class="content">
-    <div class="invest-card" *ngIf="ativo">
-      <button class="close" (click)="ativo = null">X</button>
+    <div class="invest-card" *ngIf="ativo[0]">
+      <button class="close" (click)="returnToInvest()">X</button>
       <div class="header">
-        <h2>{{ ativo.nome }}</h2>
+        <h2>{{ ativo[0].nome }}</h2>
       </div>
       <div class="body">
-        <div class="description">{{ ativo.descricao }}</div>
-        <div class="grafico">Gráfico</div>
+        <div class="description">{{ ativo[0].descricao }}</div>
+        <div id="chart" class="grafico">Gráfico</div>
       </div>
       <div class="footer">
         <div class="quantidade">
@@ -36,7 +36,7 @@
         </div>
         <div class="preco">
           <label>Preço</label>
-          <span>{{ ativo.precoAtual | number:'1.2-2' }}</span>
+          <span>{{ ativo[0].cotacao | number:'1.2-2' }}</span>
         </div>
         <button class="comprar" (click)="comprar()">Comprar</button>
       </div>

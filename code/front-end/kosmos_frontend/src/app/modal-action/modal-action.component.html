@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{ data.acao }} Ativo: {{ data.ativoNome }}</h2>
+<mat-dialog-content>
+  <p>Defina a quantidade para {{ data.acao }}:</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Quantidade</mat-label>
+    <input matInput type="number" [(ngModel)]="quantidade" min="1" (input)="calcularValorTotal()" />
+  </mat-form-field>
+
+  <p>Preço Unitário: {{ data.preco }}</p>
+  <p>Valor Total: {{ valorTotal }}</p> <!-- Exibe o valor total -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Fechar</button>
+  <button mat-raised-button color="primary" (click)="realizarAcao()">
+    {{ data.acao }}
+  </button>
+</mat-dialog-actions>
