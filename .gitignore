@@ -6,3 +6,5 @@ node_modules
 
 agora.env
 db_acoes
+
+package-lock.json
