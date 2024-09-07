@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-
+import { Stock } from '../models/stock';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalActionComponent, ModalActionData } from '../modal-action/modal-action.component';
 
 @Component({
   selector: 'app-ativo-tabela',
@@ -21,41 +23,88 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class AtivoTabelaComponent implements OnInit {
 
-  ativos: Ativo[] = [];
-  currentPage: number = 1;
-  pageSize = 10;
-  nomeAtivoSearch = '';
-  
+  stocks: Stock[] = [];
+  currentPage: number = 0;
+  pageSize: number = 5;
+  nomeAtivoSearch: string = '';
+  totalItems: number = 1;
+  totalPages: number = 1;
+
 
   constructor(
-    @Inject(AtivoService) private ativoService: AtivoService,
-    private router: Router, InvestService: InvestService) { }
-  
-  
+    private ativoService: AtivoService,
+    private router: Router,
+    InvestService: InvestService,
+    private dialog: MatDialog) { }
+
+
 
   ngOnInit(): void {
-    this.ativoService.getAtivos(this.currentPage).then(ativos => {
-      this.ativos = ativos;
-    });
+    this.getStocks();
+    this.getTotalPages()
   }
 
-  Descricaoativo(ativo: Ativo) {
-    this.router.navigate(['/descricao',]);
+  getStocks(): void {
+    this.ativoService.getAtivos(this.currentPage + 1).subscribe(stocks => {
+      this.stocks = stocks
+
+      //console.log('current page - getStocks: ' + this.currentPage + 1);
+    })
   }
 
-  onPageChange(event: PageEvent){
+  Descricaoativo(ativo: Stock): void {
+    this.router.navigate(['/descricao', ativo.nome]);
+  }
+
+  onPageChange(event: PageEvent): void{
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize
+    //console.log('event.pageIndex - onPageChange: ' + event.pageIndex)
+    this.getStocks();
 
   }
 
-  procuraAtivos(){
-    this.ativoService.getAtivos(this.currentPage).then(response => this.ativos = response)
-    // this.ativoService.getTotalPages().then(response => this.)
+  onSearchChange(): void {
+    if (this.nomeAtivoSearch.trim()) {
+      this.ativoService.getAtivoByNome(this.nomeAtivoSearch.toUpperCase().trim()).subscribe(stock => {
+        this.stocks = stock;
+        this.totalPages = 1;
+        this.totalItems = 1;
+      })
+    } else {
+      this.currentPage = 0;
+      this.getTotalPages();
+      this.getStocks();
+    }
+
   }
 
-  onSearchChange() {
-    this.ativoService.getAtivoByNome(this.nomeAtivoSearch).then(response => this.ativos = response)
+  getTotalPages(): void {
+    this.ativoService.getTotalPages().subscribe(pages => {
+      this.totalPages = pages.total_page
+      this.calcTotalItem(this.totalPages)
+    })
   }
-    
+
+  calcTotalItem(totalPages: number): void {
+    this.totalItems = totalPages * 5;
+  }
+
+  openModalAction(ativo: Stock, acao: 'comprar' | 'vender'): void {
+    const dialogRef = this.dialog.open<ModalActionComponent, ModalActionData>(ModalActionComponent, {
+      width: '400px',
+      data: {
+        ativoNome: ativo.nome,
+        acao: acao,
+        preco: ativo.cotacao
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(`Ação realizada: ${result.acao}, Quantidade: ${result.quantidade}`);
+        // Aqui você pode adicionar lógica adicional para processar o resultado do modal
+      }
+    });
+  }
 }

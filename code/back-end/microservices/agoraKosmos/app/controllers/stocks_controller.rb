@@ -9,7 +9,7 @@ class StocksController < ApplicationController
 
   def all_pages_stock
     total_pages = Stock.page(1).total_pages
-    render json: {total_pages: total_pages}
+    render json: {total_page: total_pages}
   end
 
   # GET /stocks/1
@@ -17,7 +17,8 @@ class StocksController < ApplicationController
     service = RedisService.new
     currency = service.get_data_stock(@stock.nome)
     currency = currency.map {|element| JSON.parse(element)}
-    render json: {stock: @stock, currency: currency}
+    render json: {stock: @stock,currency: currency}
+
   end
 
   def seach_stock
@@ -33,6 +34,6 @@ class StocksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def stock_params
-      params.require(:stock).permit(:nome, :descricao, :cotacao, :volume, :page)
+      params.require(:stock).permit(:nome, :descricao, :cotacao, :volume, :page, :opening_price, :closing_price)
     end
 end
