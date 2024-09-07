@@ -1,5 +1,6 @@
 require 'net/http'
 class TopicController < ApplicationController
+  before_action :authenticate_user!
   def index
     url = URI('http://agora_kosmos_noticias:3000/topics')
     response = Net::HTTP.get(url)

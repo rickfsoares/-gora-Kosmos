@@ -1,4 +1,14 @@
+
 services:
+  rabbitmq:
+    image: rabbitmq:3.13.6-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    
+    volumes:
+      - ../volumes/rabbitmq:/var/lib/rabbitmq
+  
   db_ativos:
     image: postgres:16.2-alpine3.19
     environment:
@@ -60,9 +70,12 @@ services:
     depends_on:
       - db_ativos
       - redis
-      - agora_kosmos_noticias
-
-  agora_kosmos_noticias:
+      - agora-kosmos-noticias
+      - agora-kosmos-transacoes
+      - rabbitmq
+      - agora_kosmos_frontend
+      
+  agora-kosmos-noticias:
     build: ../code/back-end/microservices/agoraKosmosNoticias
     
     environment:
@@ -71,6 +84,9 @@ services:
       - POSTGRES_DB=Ativos
       - POSTGRES_SCHEMA=public
       - POSTGRES_HOST=db_ativos
+
+    env_file:
+      - ./agora.env
     
     ports:
       - "3001:3000"
@@ -96,10 +112,7 @@ services:
       - ../code/front-end/kosmos_frontend/:/app
       - /app/node_modules
 
-    depends_on:
-      - agora_kosmos
-
-  agora_kosmos_transacoes:
+  agora-kosmos-transacoes:
     build: ../code/back-end/microservices/agoraTransacoes
 
     environment:
@@ -115,9 +128,12 @@ services:
     volumes:
       - ../code/back-end/microservices/agoraTransacoes:/app
 
+    env_file:
+      - ./agora.env
+      
     depends_on:
       - db_ativos
-      - agora_kosmos
+      - rabbitmq
 
 
 
