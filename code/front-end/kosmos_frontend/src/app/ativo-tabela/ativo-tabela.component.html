@@ -1,0 +1,27 @@
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Cotação Atual</th>
+        <th>Valor de Abertura</th>
+        <th>Valor de Fechamento</th>
+        <th>Investir</th>
+        <th>Descrição</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ativo of ativos">
+        <td>{{ ativo.nome }}</td>
+        <td>{{ ativo.precoAtual | number: '1.2-2' }}</td>
+        <td>{{ ativo.valorAbertura | number: '1.2-2' }}</td>
+        <td>{{ ativo.valorFechamento | number: '1.2-2' }}</td>
+        <td><i class="fas fa-dollar-sign"></i></td>
+        <td ><button mat-button class="fas fa-info-circle" (click)="Descricaoativo(ativo)">
+
+        </button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
