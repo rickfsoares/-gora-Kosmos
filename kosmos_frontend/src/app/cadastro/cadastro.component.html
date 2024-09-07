@@ -1,34 +1,40 @@
 <div class="container">
-  <div class="form">
-    <h1>Bem-vindo a Ágora Kosmos</h1>
-    <p>Para agilizar a abertura da sua conta, tenha um documento em mãos. Pedimos essa informação apenas por questões regulatórias.
-      Não se preocupe, seus dados estão protegidos aqui na Ágora kosmos .</p>
-    <form (ngSubmit)="onSubmit()">
-      <label for="nome">Nome Completo</label>
-      <input type="text" id="nome" name="nome" required>
+    <div class="form">
+        <h1>Bem-vindo à Ágora Kosmos</h1>
+        <p>Para agilizar a abertura da sua conta, tenha um documento em mãos. Pedimos essa informação apenas por questões regulatórias.
+        Não se preocupe, seus dados estão protegidos aqui na Ágora kosmos .</p>
 
-      <label for="cpf">CPF</label>
-      <input type="text" id="cpf" name="cpf" required>
+        <div><br><br></div>
 
-      <label for="nickname">Apelido</label>
-      <input type="text" id="nickname" name="nickname" required>
+        <form (ngSubmit)="onSubmit()">
+        <label for="nome"></label>
+        <input type="text" id="nome" name="nome" required placeholder="Nome Completo">
 
-      <label for="email">Email</label>
-      <input type="text" id="email" name="email" required>
+        <label for="cpf"></label>
+        <input type="text" id="cpf" name="cpf" required placeholder="CPF">
 
-      <label for="celular">Celular</label>
-      <input type="text" id="celular" name="celular" required>
+        <label for="nickname"></label>
+        <input type="text" id="nickname" name="nickname" required placeholder="Apelido">
 
-      <button type="submit">Avançar</button>
+        <label for="email"></label>
+        <input type="text" id="email" name="email" required placeholder="E-mail">
 
-    </form>
-  </div>
-  <div class="image">
-    <img src="/assets/svg/cadastro1.jpg" alt="Background image">
-    <div class="image-text">
-      <h2>Investir ficou mais fácil!</h2>
-      <p>Negocie ações, analise carteiras e acompanhe seu progresso com facilidade.</p>
+        <label for="celular"></label>
+        <input type="text" id="celular" name="celular" required placeholder="DDD + Telefone">
+
+        </form>
+        <br>
+        <button type="submit">Avançar</button>
     </div>
-  </div>
-</div>
 
+    <div class="image">
+        <img src="/assets/svg/cadastro1.jpg" alt="Background image">
+        <div class="image-text">
+            <h2>Investir ficou mais fácil!</h2>
+            <br>
+            <br>
+            <p>Negocie ações, analise carteiras e acompanhe seu progresso com facilidade.</p>
+        </div>
+    </div>
+
+</div>
