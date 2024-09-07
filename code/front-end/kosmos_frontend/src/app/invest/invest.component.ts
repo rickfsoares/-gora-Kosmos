@@ -8,8 +8,6 @@ import { Ativo, AtivoService } from '../service/ativo.service';
 import { MainHeaderComponent } from '../main-header/main-header.component';
 import { SideMissionBarComponent } from '../side-mission-bar/side-mission-bar.component';
 
-
-
 @Component({
   selector: 'app-invest',
   standalone: true,
@@ -18,10 +16,5 @@ import { SideMissionBarComponent } from '../side-mission-bar/side-mission-bar.co
   styleUrl: './invest.component.scss'
 })
 export class InvestComponent{
-
-
-
-
-
 
 }

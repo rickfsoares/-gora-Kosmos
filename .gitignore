@@ -6,3 +6,7 @@ node_modules
 volumes/db_acoes
 volumes/rabbitmq
 
+agora.env
+db_acoes
+
+package-lock.json

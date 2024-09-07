@@ -184,6 +184,4 @@ getLoadChart(stockId: number) {
     });
 
   }
-
-
 }

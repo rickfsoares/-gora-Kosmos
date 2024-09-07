@@ -45,5 +45,4 @@ export class AtivoService {
     const url = `${this.baseUrl}/stocks/${stockId}`;
     return this.http.get<{ stock: Stock, currency: Currency[] }>(url);
   }
-
 }

@@ -14,6 +14,7 @@ import { Stock } from '../models/stock';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalActionComponent, ModalActionData } from '../modal-action/modal-action.component';
 
+
 @Component({
   selector: 'app-ativo-tabela',
   standalone: true,
@@ -22,7 +23,6 @@ import { ModalActionComponent, ModalActionData } from '../modal-action/modal-act
   styleUrls: ['./ativo-tabela.component.scss']
 })
 export class AtivoTabelaComponent implements OnInit {
-
   stocks: Stock[] = [];
   currentPage: number = 0;
   pageSize: number = 5;

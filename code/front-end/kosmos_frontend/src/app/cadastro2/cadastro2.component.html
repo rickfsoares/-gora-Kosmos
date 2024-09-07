@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="form">
+        <br>
+        <h1>Bem-vindo à Ágora Kosmos</h1>
+        <br>
+        <p>Só mais algumas informações e pronto!</p>
+
+        <div><br><br></div>
+        
+        <form (ngSubmit)="onSubmit()">
+            <label for="endereco"></label>
+            <input type="text" id="endereco" name="endereco" required placeholder="Endereço">
+
+            <label for="cidade"></label>
+            <input type="text" id="cidade" name="cidade" required placeholder="Cidade">
+
+            <label for="estado civil"></label>
+            <input type="text" id="estadocivil" name="estado civil" required placeholder="Estado civil">
+            
+            <label for="profissao"></label>
+            <input type="text" id="profissao" name="profissao" required placeholder="Profissão">
+    
+            <label for="renda"></label>
+            <input type="text" id="renda" name="renda" required placeholder="Renda Mensal">
+        </form>
+        <br>
+        <button type="submit">Cadastrar</button>
+
+    </div>
+    <div class="image">
+        <img src="/assets/svg/cadastro2.jpg" alt="Background image">
+        <div class="image-text">
+            <h2>Investir ficou mais fácil!</h2>
+            <br>
+            <br>
+            <p>Negocie ações, analise carteiras e acompanhe seu progresso com facilidade.</p>
+        </div>
+    </div>
+</div>

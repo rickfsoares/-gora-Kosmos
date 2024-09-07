@@ -1,0 +1,35 @@
+<div class="investimento-card" *ngFor="let ativo of investimentos">
+  <mat-grid-list cols="2" rowHeight="300px" gutterSize="8px">
+    <mat-grid-tile>
+      <div class="info">
+        <div class="nome-ativo"> {{ ativo.nome }}</div>
+        <div class="cotacao">
+          <div> Cotação atual:</div>
+          <div>  R$  {{ ativo.preco }}</div>
+        </div>
+
+        <div class="cotacao">
+          <div> Quantidade</div>
+          <div> {{ ativo.quantidade }}</div>
+        </div>
+
+        <button class="vender-button" (click)="venderAtivo(ativo)">Vender</button>
+
+      </div>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="info2">
+
+          <div class="valorbruto">Valor Bruto</div>
+          <div class="valorbruto">R$ {{ ativo.preco * ativo.quantidade }}</div>
+
+      </div>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>
+
+
+
