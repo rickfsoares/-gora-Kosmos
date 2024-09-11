@@ -1,7 +1,7 @@
 require 'net/http'
 
 class NewsController < ApplicationController
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   def get_news
     url = URI("http://agora-kosmos-noticias:3000/news?page=#{params[:page]}")    
     response = Net::HTTP.get(url)

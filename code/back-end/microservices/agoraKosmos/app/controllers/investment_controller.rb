@@ -1,5 +1,5 @@
 class InvestmentController < ApplicationController
-    before_action :authenticate_user!
+    #before_action :authenticate_user!
 
     def create
         stock = Stock.find(params[:stock_id])
