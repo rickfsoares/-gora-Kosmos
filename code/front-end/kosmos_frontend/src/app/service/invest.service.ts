@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Stock } from '../models/stock';
+import { HttpClient } from '@angular/common/http';
+
 
 export interface Investimento {
   nome: string;
@@ -12,8 +15,13 @@ export interface Investimento {
   providedIn: 'root'
 })
 export class InvestService {
+  private baseUrl = "http://localhost:3000/api";
+
+  constructor(private http: HttpClient) {}
+
   getInvestimentos() {
-    return this.investimento$;
+    const url = `${this.baseUrl}/investments`
+    return this.http.get(url);
   }
 
   private investimentoSubject = new BehaviorSubject<Investimento>({

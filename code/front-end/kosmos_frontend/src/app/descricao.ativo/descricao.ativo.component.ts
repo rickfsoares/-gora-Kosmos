@@ -19,11 +19,13 @@ import {
   ApexXAxis,
   ApexTooltip
 } from "ng-apexcharts";
+import { SideMissionBarComponent } from '../side-mission-bar/side-mission-bar.component';
+import { MainHeaderComponent } from '../main-header/main-header.component';
 
 @Component({
   selector: 'app-descricao.ativo',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SideMissionBarComponent, MainHeaderComponent],
   templateUrl: './descricao.ativo.component.html',
   styleUrls: ['./descricao.ativo.component.scss']
 })
