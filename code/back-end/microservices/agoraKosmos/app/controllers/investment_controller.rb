@@ -3,7 +3,7 @@ class InvestmentController < ApplicationController
 
     def create
         stock = Stock.find(params[:stock_id])
-        user  = User.find(current_user.id)
+        user  = User.find(1)
         valor_compra = stock.cotacao * params[:quantity]
         if user.saldo < valor_compra
             render json: {message: "Saldo insuficiente"}, status: :bad_request
@@ -11,9 +11,15 @@ class InvestmentController < ApplicationController
         else
             user.saldo -= valor_compra
             user.save
-            investment = user.investments.create(
+            user_investments = user.investments.joins(:stock).where(stock: {id: params[:stock_id]}).first
+            if user_investments
+              user_investments.quantidade += params[:quantity]
+              user_investments.save
+            else  
+              user.investments.create(
                 stock: stock, 
                 quantidade: params[:quantity])
+            end
 
             render json: {message: "Compra bem-sucessida"}, status: :ok
             return
@@ -22,23 +28,30 @@ class InvestmentController < ApplicationController
     end 
 
     def index
-        user = User.find(current_user.id)
+        user = User.find(1)
         investments = user.investments.includes(:stock)
         render json: investments.to_json(include: :stock)
     end
 
     def vender
-        user = User.find(current_user.id)
+        user = User.find(1)
         investimet = user.investments.find(params[:investment_id])
         stock = investimet.stock
-        value_add = investimet.quantidade * stock.cotacao
+        value_add = params[:quantity] * stock.cotacao
         user.saldo += value_add
         user.save
-        stock.volume += investimet.quantidade
+        stock.volume += params[:quantity]
         stock.save
-        investimet.destroy
-        render json: {message: "venda bem-sucessida"}
 
+        if params[:quantity] >= investimet.quantidade
+          investimet.destroy
+        else 
+          investimet.quantidade -= params[:quantity]
+          investimet.save
+        end
+
+        investments = user.investments.includes(:stock)
+        render json: investments.to_json(include: :stock)
     end
 
     private

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Stock } from '../models/stock';
 import { HttpClient } from '@angular/common/http';
+import { Investment } from '../models/investment';
+import { Sell } from '../models/sell';
+import { Buy } from '../models/buy';
 
 
 export interface Investimento {
@@ -19,40 +22,19 @@ export class InvestService {
 
   constructor(private http: HttpClient) {}
 
-  getInvestimentos() {
+  getInvestimentos(): Observable<Investment[]> {
     const url = `${this.baseUrl}/investments`
-    return this.http.get(url);
+    return this.http.get<Investment[]>(url);
   }
 
-  private investimentoSubject = new BehaviorSubject<Investimento>({
-    nome: 'Ativo X',
-    descricao: 'Descrição do ativo',
-    quantidade: 1,
-    preco: 34.40
-  });
 
-  investimento$ = this.investimentoSubject.asObservable();
-
-  comprarInvestimento(quantidade: number) {
-    const investimento = this.investimentoSubject.getValue();
-    this.investimentoSubject.next({
-      ...investimento,
-      quantidade: investimento.quantidade + quantidade
-    });
+  comprarInvestimento(buy: Buy): Observable<Investment[]> {
+    const url = `${this.baseUrl}/investments`
+    return this.http.post<Investment[]>(url, buy);
   }
 
-  venderInvestimento(nome: string, quantidade: number): Observable<void> {
-    const investimento = this.investimentoSubject.getValue();
-    if (investimento.nome === nome && investimento.quantidade >= quantidade) {
-      this.investimentoSubject.next({
-        ...investimento,
-        quantidade: investimento.quantidade - quantidade
-      });
-      return new Observable<void>();
-    } else {
-      return new Observable<void>(subscriber => {
-        subscriber.error('Quantidade insuficiente');
-      });
-    }
+  venderInvestimento(sell: Sell): Observable<Investment[]> {
+    const url: string = `${this.baseUrl}/investments`
+    return this.http.put<Investment[]>(url, sell);
   }
 }

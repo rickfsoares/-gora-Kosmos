@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -10,6 +10,9 @@ import {MatCardModule} from '@angular/material/card';
 import { Stock } from '../models/stock';
 import { ModalActionComponent, ModalActionData } from '../modal-action/modal-action.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Investment } from '../models/investment';
+import { Sell } from '../models/sell';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-investimentos-component',
@@ -21,27 +24,49 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./investimentos-component.component.scss']
 })
 
-export class InvestimentosComponent {
+export class InvestimentosComponent implements OnInit {
   stocks: Stock[] = [];
+  investimentos: Investment[] = [];
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private investService: InvestService, private changeDetectorRef: ChangeDetectorRef) {
+  }
+
+  ngOnInit(): void {
+    this.getInvestimentos();
+  }
+
+  getInvestimentos() {
+    this.investService.getInvestimentos().subscribe(i => {
+      this.investimentos = i;
+      console.log(this.investimentos);
+    });
   }
 
   openModalAction(ativo: Stock, acao: 'comprar' | 'vender'): void {
+    console.log('investimento dentro do modal: ', this.investimentos);
+    const investment = this.investimentos.filter(inv => inv.stock_id == ativo.id) || null;
+
     const dialogRef = this.dialog.open<ModalActionComponent, ModalActionData>(ModalActionComponent, {
       width: '400px',
       data: {
         ativoNome: ativo.nome,
+        idAtivo: 0,
         acao: acao,
-        preco: ativo.cotacao
+        preco: ativo.cotacao,
+        investiment: investment
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(`Ação realizada: ${result.acao}, Quantidade: ${result.quantidade}`);
-        // Aqui você pode adicionar lógica adicional para processar o resultado do modal
+        const arrayInvestimentos: Investment[] = result.investiment;
+        console.log(result.investiment);
+        const idx = this.investimentos.findIndex(investimento => !arrayInvestimentos
+                                     .some(invUpdate => investimento.id === invUpdate.id));
+
+        this.investimentos = result.investment;
       }
+
     });
   }
 

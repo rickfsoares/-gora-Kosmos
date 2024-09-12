@@ -1,15 +1,15 @@
-<div class="investimento-card" *ngFor="let ativo of stocks">
+<div class="investimento-card" *ngFor="let ativo of investimentos">
   <div class="card">
     <div class="left-side">
-      <h1>Nome da ação</h1>
-      <p>Cotação atual: </p>
-      <p>Quantidade: </p>
+      <h1>{{ ativo.stock.nome }}</h1>
+      <p>Cotação atual: {{ ativo.stock.cotacao }}</p>
+      <p>Quantidade: {{ ativo.quantidade }}</p>
 
-      <button class="sell-button" (click)="openModalAction(ativo, 'vender')">Vender</button>
+      <button class="sell-button" (click)="openModalAction(ativo.stock, 'vender')">Vender</button>
     </div>
     <div class="right-side">
       <h3>Valor bruto</h3>
-      <h1>R$</h1>
+      <h1>R$ {{ ativo.quantidade * ativo.stock.cotacao }}</h1>
     </div>
   </div>
 </div>
