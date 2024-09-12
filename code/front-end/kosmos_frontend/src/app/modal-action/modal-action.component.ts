@@ -70,7 +70,7 @@ export class ModalActionComponent {
       this.comprar();
     }
     // Fechar o diálogo e passar algum resultado, se necessário
-    this.dialogRef.close({ investiment: this.data.investiment });
+  
   }
 
   vender(): void {
@@ -78,9 +78,7 @@ export class ModalActionComponent {
       this.sell.investment_id = this.data.investiment[0].id;
       this.sell.quantity = this.quantidade;
       this.investService.venderInvestimento(this.sell).subscribe( inv => {
-        console.log('tipode de inv subs: ', typeof inv);
-        console.log('o que é: ', inv);
-        this.data.investiment = inv;
+        this.dialogRef.close({ investiment: inv });
       });
     }
   }
@@ -89,7 +87,7 @@ export class ModalActionComponent {
 
     this.buy.quantity = this.quantidade;
     this.buy.stock_id = this.data.idAtivo;
-    this.investService.comprarInvestimento(this.buy).subscribe();
+    this.investService.comprarInvestimento(this.buy).subscribe(response => this.dialogRef.close());
   }
 
   calcularValorTotal(): void {

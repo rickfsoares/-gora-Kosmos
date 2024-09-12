@@ -28,9 +28,9 @@ export class InvestService {
   }
 
 
-  comprarInvestimento(buy: Buy): Observable<Investment[]> {
+  comprarInvestimento(buy: Buy): Observable<any> {
     const url = `${this.baseUrl}/investments`
-    return this.http.post<Investment[]>(url, buy);
+    return this.http.post<any>(url, buy);
   }
 
   venderInvestimento(sell: Sell): Observable<Investment[]> {
