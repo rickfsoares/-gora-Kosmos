@@ -18,29 +18,19 @@ import { Usuario, UsuarioService } from '../service/usuario.service';
   styleUrl: './perfil-crud.component.scss'
 })
 export class PerfilCrudComponent {
-  @Input() id!: number;
+  @Input() idUsuario!: number;
   usuario!: Usuario;
 
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(){
-    this.usuarioService.getUsuarioById(this.id)
+    this.usuarioService.getUsuarioById(this.idUsuario)
       .then(usuario => this.usuario = usuario)
       .catch(error => console.error(error))
   }
   atualizaCadastro() {
-    const usuario: Usuario = {
-      nome: this.usuario.nome,
-      cpf: this.usuario.cpf,
-      email: this.usuario.email,
-      telefone: this.usuario.telefone,
-      profissao: this.usuario.profissao,
-      estadoCivil: this.usuario.estadoCivil,
-      endereco: this.usuario.endereco,
-      id: 0
-    }
-    this.usuarioService.atualiza(usuario)
-      .then(() => {
+    this.usuarioService.atualiza(this.usuario)
+    .then(() => {
         alert("Usuário atualizado")
       })
       .catch(error => {

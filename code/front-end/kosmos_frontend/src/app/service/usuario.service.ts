@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { ContaUsuario } from './transferencia.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
+  //MOCK
   usuarioMock: Usuario = {
     id: 0,
     nome: 'Jonas Ariel',
@@ -13,7 +15,8 @@ export class UsuarioService {
     telefone: '(83) 98888-1111',
     profissao: 'engenheiro de software',
     estadoCivil: 'casado',
-    endereco: 'rua das alamedas, 250. Jaguaribe. João Pessoa - PB'
+    endereco: 'rua das alamedas, 250. Jaguaribe. João Pessoa - PB',
+    conta: new ContaUsuario()
   }
   usuarios: Array<Usuario> = [this.usuarioMock]
 
@@ -44,6 +47,7 @@ export interface Usuario{
   profissao: string,
   estadoCivil: string,
   endereco: string;
+  conta: ContaUsuario
 }
 
 export enum EstadoCivilEnum {
