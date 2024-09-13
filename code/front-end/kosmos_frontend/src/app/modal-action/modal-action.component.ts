@@ -70,7 +70,7 @@ export class ModalActionComponent {
       this.comprar();
     }
     // Fechar o diálogo e passar algum resultado, se necessário
-  
+
   }
 
   vender(): void {

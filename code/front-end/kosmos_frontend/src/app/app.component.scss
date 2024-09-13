@@ -1,4 +1,6 @@
 @import '@fortawesome/fontawesome-free/css/all.min.css';
-.router-outlet {
+
+:host ::ng-deep router-outlet {
   z-index: -10;
 }
+

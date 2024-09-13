@@ -43,6 +43,6 @@ export class ListaPendentesComponent implements OnInit{
       }
     });
 
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(res => this.getTransactions());
   }
 }

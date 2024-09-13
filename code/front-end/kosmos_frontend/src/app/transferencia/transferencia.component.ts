@@ -9,6 +9,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { Usuario, UsuarioService } from '../service/usuario.service';
 import { TransferenciaService } from '../service/transferencia.service';
 import { Router } from '@angular/router';
+import { TransactionService } from '../service/transaction.service';
+import { ValorPagamento } from '../models/valor-pagamento';
 
 @Component({
   selector: 'app-transferencia',
@@ -22,9 +24,9 @@ export class TransferenciaComponent {
   quantia: number = 0;
   @Input() idUsuario!: number;
   usuario!: Usuario;
-  
-  constructor(private transferenciaService: TransferenciaService, private usuarioService: UsuarioService, private router: Router){}
-  
+
+  constructor(private transferenciaService: TransferenciaService, private usuarioService: UsuarioService, private router: Router, private transaction: TransactionService ){}
+
   ngOnInit(){
     console.log(this.idUsuario)
     this.usuarioService.getUsuarioById(this.idUsuario)
@@ -33,14 +35,8 @@ export class TransferenciaComponent {
   }
 
   transfereQuantia() {
-      this.transferenciaService.transferirParaContaAgoraKosmos(this.usuario, this.quantia)
-        .then(()=> {
-          this.router.navigate(['/lista-pendentes'])
-        })
-        .catch(error => {
-          console.error(error)
-          alert("Houve um erro ao realizar a transferência")
-        })
+      this.transaction.payTransaction(new ValorPagamento(this.quantia)).subscribe(res => this.router.navigate(['/lista-pendentes']));
+
   }
 
 
