@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ListaPendentesComponent } from './lista-pendentes/lista-pendentes.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { Cadastro2Component } from './cadastro2/cadastro2.component';
+import { PerfilUsuarioComponent } from './perfil-usuario/perfil-usuario.component';
 
 
 export const routes: Routes = [
@@ -72,6 +73,11 @@ export const routes: Routes = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
+
+  {
+    path: 'perfil',
+    component: PerfilUsuarioComponent
+  }
 
 
 ];

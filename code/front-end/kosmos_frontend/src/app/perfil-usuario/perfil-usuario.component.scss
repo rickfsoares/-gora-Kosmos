@@ -1,0 +1,79 @@
+.container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  grid-template-columns: 20rem 1fr;
+  height: 100vh;
+
+  background: rgb(65,162,217);
+  background: radial-gradient(circle, rgba(65,162,217,1) 24%, rgba(11,96,176,1) 100%);
+
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sidebar {
+  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(102, 102, 102, 0.8) 100%);
+  padding: 20px;
+  margin-top: 10px;
+  grid-row: 2;
+
+}
+
+.sidebar h2 {
+  margin: 0;
+}
+
+.main-content {
+  padding: 20px;
+  grid-row: 2;
+}
+
+.filter select {
+  width: 20%;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(102, 102, 102, 0.8) 100%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.news-item {
+  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(102, 102, 102, 0.8) 100%);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.news-header {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.news-header a {
+  color: white;
+}
+
+.news-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary {
+  flex: 2;
+  margin-right: 20px;
+}
+
+.photo {
+  flex: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(102, 102, 102, 0.8) 100%);
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.photo img {
+  width: 25rem;
+  height: 20rem;
+}
