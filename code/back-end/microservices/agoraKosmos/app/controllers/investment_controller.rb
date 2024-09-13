@@ -43,15 +43,21 @@ class InvestmentController < ApplicationController
         stock.volume += params[:quantity]
         stock.save
 
-        if params[:quantity] >= investimet.quantidade
-          investimet.destroy
-        else 
-          investimet.quantidade -= params[:quantity]
-          investimet.save
-        end
+        if params[:quantity] > investimet.quantidade
+           render json: {message: "Quantidade excedida"}, status: :bad_request
+        else
 
-        investments = user.investments.includes(:stock)
-        render json: investments.to_json(include: :stock)
+          if params[:quantity] == investimet.quantidade
+            investimet.destroy
+
+          else 
+            investimet.quantidade -= params[:quantity]
+            investimet.save
+          end
+
+          investments = user.investments.includes(:stock)
+          render json: investments.to_json(include: :stock)
+        end
     end
 
     private

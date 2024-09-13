@@ -60,20 +60,7 @@ export class InvestimentosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const arrayInvestimentos: Investment[] = result.investiment;
-        let idx = -1
         this.investimentos = [...arrayInvestimentos];
-        console.log(arrayInvestimentos);
-        console.log(this.investimentos);
-        // for(let investi of arrayInvestimentos) {
-        //   idx = this.investimentos.findIndex(investimento => investi.id === investimento.id);
-        //   if(idx >= 0) {
-        //     console.log(idx);
-        //     this.investimentos[idx].quantidade = investi.quantidade;
-        //   } 
-        //   else {
-        //     this.investimentos.splice(idx, 1);
-        //   }
-        // }
       }
     });
   }

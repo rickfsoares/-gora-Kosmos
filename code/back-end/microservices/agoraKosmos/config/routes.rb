@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/current_user', to: 'current_user#index'
+  get '/api/current_user', to: 'current_user#index'
   get "/api/stocks", to: "stocks#index"
   get "/api/stocks/pages", to: "stocks#all_pages_stock"
   get "/api/stocks/search", to: "stocks#seach_stock"
