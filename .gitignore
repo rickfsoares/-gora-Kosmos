@@ -9,4 +9,3 @@ volumes/rabbitmq
 agora.env
 db_acoes
 
-package-lock.json

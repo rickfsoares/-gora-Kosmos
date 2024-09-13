@@ -19,11 +19,15 @@ import {
   ApexXAxis,
   ApexTooltip
 } from "ng-apexcharts";
+import { SideMissionBarComponent } from '../side-mission-bar/side-mission-bar.component';
+import { MainHeaderComponent } from '../main-header/main-header.component';
+import { InvestService } from '../service/invest.service';
+import { Buy } from '../models/buy';
 
 @Component({
   selector: 'app-descricao.ativo',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SideMissionBarComponent, MainHeaderComponent],
   templateUrl: './descricao.ativo.component.html',
   styleUrls: ['./descricao.ativo.component.scss']
 })
@@ -31,6 +35,7 @@ export class DescricaoAtivoComponent implements OnInit {
   ativo: Stock[] = [];
   quantidade = 1;
   page: number = 1;
+  buy: Buy = new Buy(0,0);
 
   // Propriedades do gráfico
   public series: ApexAxisChartSeries = [];
@@ -43,7 +48,7 @@ export class DescricaoAtivoComponent implements OnInit {
   public markers: ApexMarkers = { size: 0 };
   public title: ApexTitleSubtitle = { text: '' };
 
-  constructor(private ativoService: AtivoService, private route: ActivatedRoute, private router: Router) {
+  constructor(private ativoService: AtivoService, private route: ActivatedRoute, private router: Router, private investService: InvestService) {
   }
 
   ngOnInit(): void {
@@ -61,10 +66,9 @@ export class DescricaoAtivoComponent implements OnInit {
   }
 
     comprar(): void {
-    //    if (this.ativo) {
-    //      console.log(`Comprando ${this.quantidade} de ${this.ativo.nome} por ${this.ativo.precoAtual}`);
-    //
-    //    }
+      this.buy.stock_id = this.ativo[0].id;
+      this.buy.quantity = this.quantidade;
+      this.investService.comprarInvestimento(this.buy).subscribe(res => this.returnToInvest());
   }
 
   returnToInvest(): void {

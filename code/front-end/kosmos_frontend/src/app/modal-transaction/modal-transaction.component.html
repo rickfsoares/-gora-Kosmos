@@ -1,0 +1,9 @@
+<mat-dialog-content>
+  <img [src]="'data:image/jpeg;base64,' + data.qrCodeBase64" />
+  <br>
+  <label for="copiar">Copiar Hash:</label>
+  <input type="text" id="copiar" [value]="data.qrCode" readonly />
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="onNoClick()">Fechar</button>
+</mat-dialog-actions>

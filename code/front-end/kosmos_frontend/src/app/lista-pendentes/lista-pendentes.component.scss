@@ -3,51 +3,10 @@
   grid-template-rows: auto 1fr;
   grid-template-columns: 200px 1fr;
   height: 100vh;
-  background: linear-gradient( #ffffff 0%, #41A2D9 45%, #0B60B0 100%);
+  background: rgb(65,162,217);
+  background: radial-gradient(circle, rgba(65,162,217,1) 24%, rgba(11,96,176,1) 100%);
   color: white;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.header {
-  grid-column: 1 / span 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(102, 102, 102, 0.8) 100%);
-}
-
-.header h1 {
-  margin: 0;
-}
-
-.nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.account {
-  display: flex;
-  align-items: center;
-}
-
-.fas {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  margin-left: auto;
-}
-
-.sidebar {
-  background: linear-gradient(rgba(0, 0, 0, 0.8) 0%, rgba(102, 102, 102, 0.8) 100%);
-  padding: 20px;
-  margin-top: 10px;
-  grid-row: 2;
-}
-
-.sidebar h2 {
-  margin: 0;
 }
 
 .main-content {
@@ -56,12 +15,15 @@
 }
 
 .table-container {
-  width: 100%;
+  text-align: center;
+  width: 74%;
   overflow-x: auto;
   background-color: #1b2e3b;
+  background: rgb(0,0,0);
+  background: linear-gradient(166deg, rgba(0,0,0,0.75) 45%, rgba(102,102,102,0.75) 100%);
   border-radius: 10px;
   padding: 10px;
-  text-align: center;
+  margin-left: 10rem;
 
       .fas{
       color: #fff;
@@ -78,7 +40,9 @@
       }
 
       thead {
-          background-color: #233a4e;
+          background: rgb(0,0,0);
+          background: linear-gradient(166deg, rgba(0,0,0,0.1) 45%, rgba(102,102,102,0.1) 100%);
+          border-radius: 8px;
 
           th {
           font-weight: bold;

@@ -1,23 +1,7 @@
 <div class="container">
-  <div class="header">
-    <h1>Ágora Kosmos</h1>
-    <div class="nav">
-      <a href="#">Home</a>
-      <a href="/invest">Investir</a>
-      <a href="/home">Conta</a>
-      <a href="/news">Notícias</a>
-    </div>
-    <div class="account">
-      0,00 R$
-      <div>
-        <i class="fas fa-user"></i>
-      </div>
-    </div>
-  </div>
+  <app-main-header></app-main-header>
 
-  <div class="sidebar">
-    <h2>Missões</h2>
-  </div>
+  <app-side-mission-bar></app-side-mission-bar>
 
   <div class="content">
     <div class="invest-card" *ngIf="ativo[0]">

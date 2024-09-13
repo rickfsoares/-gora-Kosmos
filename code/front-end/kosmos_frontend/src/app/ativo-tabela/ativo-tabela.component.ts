@@ -1,4 +1,3 @@
-// Remove the duplicate import statement
 import { Component, OnInit, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -95,8 +94,10 @@ export class AtivoTabelaComponent implements OnInit {
       width: '400px',
       data: {
         ativoNome: ativo.nome,
+        idAtivo: ativo.id,
         acao: acao,
-        preco: ativo.cotacao
+        preco: ativo.cotacao,
+        investiment: null
       }
     });
 

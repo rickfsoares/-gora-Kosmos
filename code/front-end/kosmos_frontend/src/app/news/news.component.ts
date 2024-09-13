@@ -37,6 +37,7 @@ export class NewsComponent implements OnInit {
     if (this.isFiltered) {
       this.currentPage = event.pageIndex;
       this.getNewsByTopic(this.topic, this.currentPage + 1); // soma feita para que coincida com o número da página que vem do back-end
+      console.log('total pages: ', this.totalPages)
     } else {
         this.currentPage = event.pageIndex + 1;
         this.getNews()
