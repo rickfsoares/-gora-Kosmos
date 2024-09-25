@@ -30,10 +30,11 @@ module AgoraKosmos
     config.api_only = true
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:4200'  # Substitua pelo endereço do seu frontend
+        origins  %r{https?://.*}, %r{http://\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}}
 
         resource '*',
           headers: :any,
+          expose: :any,
           methods: [:get, :post, :put, :patch, :delete, :options, :head],
           credentials: true  # Se estiver usando cookies ou autenticação
       end

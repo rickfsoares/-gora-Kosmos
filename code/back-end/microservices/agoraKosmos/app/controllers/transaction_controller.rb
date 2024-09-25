@@ -1,7 +1,7 @@
 require 'net/http'
 
 class TransactionController < ApplicationController
-    #before_action :authenticate_user!
+    before_action :authenticate_user!
     def criar_transacao
         url = URI("http://agora-kosmos-transacoes:3000/transactions/criar")
         request_body = {

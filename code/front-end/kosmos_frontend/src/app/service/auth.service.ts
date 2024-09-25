@@ -10,6 +10,7 @@ export class AuthService {
 
     // Armazena o token na memória ou em localStorage
     setToken(token: string): void {
+      console.log('set token');
       this.authToken = token;
       localStorage.setItem('authToken', token);
     }

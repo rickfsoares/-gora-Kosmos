@@ -27,11 +27,13 @@ export class LoginLayoutComponent {
         if (response.token) {
           this.authService.setToken(response.token); // Armazena o token usando o AuthService
           console.log('token: ', response.token)
+          console.log('auth token', this.authService.getToken());
           this.router.navigate(['/home'])
         }
       }, error => {
         // Trate erros de login, como email ou senha inválidos
         console.error('Erro ao fazer login', error);
+        alert(`login falhou: ${error}`);
       });
   }
 }
