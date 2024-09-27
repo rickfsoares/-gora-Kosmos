@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-main-header',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './main-header.component.scss'
 })
 export class MainHeaderComponent {
+
+  saldo: string;
+  constructor(private userService: UsuarioService) {
+    this.saldo = userService.getInfoSaldo();
+  }
 
 }

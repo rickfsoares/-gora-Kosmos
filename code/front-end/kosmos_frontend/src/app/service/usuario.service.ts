@@ -20,6 +20,7 @@ export class UsuarioService {
   }
   usuarios: Array<Usuario> = [this.usuarioMock]
 
+  private infoSaldo: string = '0.00';
   constructor() { }
 
   atualiza(usuario: Usuario): Promise<void>{
@@ -35,6 +36,14 @@ export class UsuarioService {
   getUsuarioById(id: number): Promise<Usuario>{
     //TODO chamada do backend para pegar usuário
     return Promise.resolve(this.usuarios[id])
+  }
+
+  setInfoSaldo(saldo: string): void {
+    this.infoSaldo = saldo;
+  }
+
+  getInfoSaldo(): string {
+    return this.infoSaldo;
   }
 }
 
