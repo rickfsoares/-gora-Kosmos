@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ContaUsuario } from './transferencia.service';
+import { UserInfo } from '../models/user-info';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class UsuarioService {
   }
   usuarios: Array<Usuario> = [this.usuarioMock]
 
+  private userInfo: UserInfo = new UserInfo(0, '', '', false);
   private infoSaldo: string = '0.00';
   constructor() { }
 
@@ -40,6 +42,14 @@ export class UsuarioService {
 
   setInfoSaldo(saldo: string): void {
     this.infoSaldo = saldo;
+  }
+
+  setUserInfo(userInfo: UserInfo): void {
+    this.userInfo = userInfo;
+  }
+
+  getUserInfo(): UserInfo {
+    return this.userInfo;
   }
 
   getInfoSaldo(): string {

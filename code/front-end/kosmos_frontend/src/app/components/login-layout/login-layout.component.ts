@@ -39,6 +39,7 @@ export class LoginLayoutComponent {
           console.log('auth token', this.authService.getToken());
           this.router.navigate(['/home'])
           this.userService.setInfoSaldo(response.user.saldo);
+          this.userService.setUserInfo(response.user);
         }
       }, error: (err) => {
         // Trate erros de login, como email ou senha inválidos
