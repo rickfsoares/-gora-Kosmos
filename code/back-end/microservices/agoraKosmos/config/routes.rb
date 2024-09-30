@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get '/api/gemini/index', to: 'gemini#index'
+  get '/api/mission', to: 'mission#index'
+  get '/api/ranking/week', to: 'ranking#ranking_week'
+  get '/api/ranking/global', to: 'ranking#ranking_global'
+  post '/api/gemini/index', to: 'gemini#index'
   get '/api/current_user', to: 'current_user#index'
   get "/api/stocks", to: "stocks#index"
   get "/api/stocks/pages", to: "stocks#all_pages_stock"
@@ -27,6 +30,13 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
+
+  devise_scope :user do
+    patch '/api/account_update', to: 'users/registrations#update'
+    put '/api/account_update', to: 'users/registrations#update'
+    delete '/api/account_delete', to: 'users/registrations#destroy', as: :account_delete
+  end
+
   
   get "up" => "rails/health#show", as: :rails_health_check
 

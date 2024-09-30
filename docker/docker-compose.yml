@@ -135,6 +135,18 @@ services:
       - db_ativos
       - rabbitmq
 
+  agora-kosmos-gemini:
+    build: ../code/back-end/microservices/agoraKosmosGemini
+
+    ports:
+      - "5001:5000"
+
+    volumes:
+      - ../code/back-end/microservices/agoraKosmosGemini:/home/app
+    
+    env_file:
+      - ./agora.env
+
 
 
 
