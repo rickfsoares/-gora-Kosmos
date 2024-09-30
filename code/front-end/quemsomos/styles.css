@@ -1,0 +1,184 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(circle, rgba(65,162,217,1) 24%, rgba(11,96,176,1) 100%);
+    margin: 10px;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr; /* Navbar em cima, resto embaixo */
+    grid-template-columns: 200px 1fr; /* Sidebar na esquerda, conteúdo à direita */
+    height: 100vh; /* Altura total da viewport */
+}
+
+img {
+    border-radius: 10px;
+    width: 400px;
+}
+
+.navbar {
+    grid-column: 1 / -1; /* Navbar ocupa toda a largura */
+    height: 50px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.82) 51.06%, rgba(102, 102, 102, 0.82) 400%);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 6px;
+}
+
+.navbar-left {
+    flex: 1;
+}
+
+.navbar-center {
+    flex: 2;
+}
+
+.navbar-center ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-right {
+    flex: 1;
+    text-align: right;
+}
+
+.sidebar {
+    margin-top: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar h2 {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.content {
+    padding-left: 50px; /* Espaçamento interno para o conteúdo principal */
+    padding-top: 40px;
+    padding-right: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+p {
+    text-align: justify;
+    line-height: 150%;
+}
+
+.quemsomos {
+    display: flex; /* Usando flexbox */
+    align-items: flex-start; /* Alinhando itens ao topo */
+    color: white;
+    margin-bottom: 20px;
+}
+
+.quemsomos div {
+    flex: 1; /* O texto ocupa o espaço disponível */
+    margin-right: 60px; /* Espaço entre o texto e a imagem */
+}
+
+.nossamissao {
+    display: flex;
+    align-items: flex-start;
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    flex-direction: row-reverse; /* Inverte a ordem dos filhos */
+}
+
+.nossamissao div {
+    flex: 1;
+    margin-left: 60px; /* Troca para margin-left para manter o espaço à esquerda da imagem */
+}
+
+
+.duvidas {
+    color: white;
+}
+
+.duvidas p {
+    text-align: center;
+}
+
+.formulario {
+    background-color: white; /* Cor de fundo branca */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+    max-width: 600px; /* Largura máxima */
+    margin: 40px auto; /* Centraliza horizontalmente e adiciona margem superior */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidade */
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column; /* Coloca os itens em coluna */
+    align-items: center; /* Centraliza horizontalmente */
+}
+
+.formulario label {
+    margin: 10px 0; /* Espaçamento entre labels e inputs */
+}
+
+.formulario input {
+    width: 80%; /* Faz os inputs ocuparem toda a largura disponível */
+    padding: 10px; /* Espaçamento interno dos inputs */
+    margin-bottom: 20px; /* Espaçamento abaixo dos inputs */
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 4px; /* Bordas arredondadas dos inputs */
+}
+
+.formulario button {
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    background-color: #007bff; /* Cor do fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove borda padrão */
+    border-radius: 4px; /* Bordas arredondadas do botão */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+}
+
+.formulario button:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse sobre o botão */
+}
+
+.phone-input-container {
+    display: flex; /* Usar flexbox para alinhar o input e o botão */
+    align-items: center; /* Centraliza verticalmente */
+    width: 84%; /* Ocupa toda a largura disponível */
+}
+
+.phone-input-container input {
+    flex: 1; /* Faz o input ocupar todo o espaço disponível */
+    padding: 10px; /* Adiciona espaçamento interno */
+    margin-right: 10px; /* Espaço entre o input e o botão */
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 4px; /* Bordas arredondadas */
+    height: 20px; /* Altura fixa para alinhamento */
+}
+
+.add-phone {
+    background-color: #007bff; /* Cor do fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remove borda padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+    font-size: 16px; /* Tamanho da fonte */
+    margin-bottom: 20px;
+}
+
+.add-phone:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse sobre o botão */
+}
