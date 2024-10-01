@@ -8,10 +8,15 @@
     <div *ngIf="selectedSection === 'investimentos'">
       <app-investimentos-component></app-investimentos-component>
     </div>
-  </div>
-
   <div *ngIf="selectedSection === 'ranking'">
     <app-ranking></app-ranking>
+  </div>
+
+
+  </div>
+
+  <div class="chat-bot-container">
+    <app-chat-bot></app-chat-bot>
   </div>
 
   <router-outlet></router-outlet>

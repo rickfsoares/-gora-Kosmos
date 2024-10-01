@@ -6,22 +6,31 @@
         <p>Só mais algumas informações e pronto!</p>
 
         <div><br><br></div>
-        
+
         <form (ngSubmit)="onSubmit()">
             <label for="endereco"></label>
-            <input type="text" id="endereco" name="endereco" required placeholder="Endereço">
+            <input type="text" id="endereco" [(ngModel)]="endereco" name="endereco" required placeholder="Endereço">
+
+            <label for="cep"></label>
+            <input type="text" id="cep" [(ngModel)]="cep" name="cep" required placeholder="CEP(XXXXX-XXX)">
+
+            <label for="uf"></label>
+            <select id="uf" [(ngModel)]="uf" name="uf" required>
+              <option value="" disabled selected>Selecione a UF</option>
+              <option *ngFor="let estado of ufs" [value]="estado.sigla">{{ estado.nome }}</option>
+            </select>
 
             <label for="cidade"></label>
-            <input type="text" id="cidade" name="cidade" required placeholder="Cidade">
+            <input type="text" id="cidade" [(ngModel)]="cidade" name="cidade" required placeholder="Cidade">
 
             <label for="estado civil"></label>
-            <input type="text" id="estadocivil" name="estado civil" required placeholder="Estado civil">
-            
+            <input type="text" id="estadocivil" [(ngModel)]="estadoCivil" name="estado civil" required placeholder="Estado civil">
+
             <label for="profissao"></label>
-            <input type="text" id="profissao" name="profissao" required placeholder="Profissão">
-    
+            <input type="text" id="profissao" [(ngModel)]="profissao" name="profissao" required placeholder="Profissão">
+
             <label for="renda"></label>
-            <input type="text" id="renda" name="renda" required placeholder="Renda Mensal">
+            <input type="text" id="renda" [(ngModel)]="renda" name="renda" required placeholder="Renda Mensal">
         </form>
         <br>
         <button type="submit">Cadastrar</button>

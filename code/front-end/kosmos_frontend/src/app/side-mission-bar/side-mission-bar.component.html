@@ -1,4 +1,14 @@
 <div class="sidebar">
   <h2>Missões</h2>
+  <mat-accordion>
+    @for(mission of missions; track mission.nome) {
+  <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+    <mat-expansion-panel-header>
+      <mat-panel-title> {{ mission.nome }} </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>{{ mission.descricao }}</p>
+    </mat-expansion-panel>
+    }
+  </mat-accordion>
 </div>
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ContaUsuario } from './transferencia.service';
+import { UserInfo } from '../models/user-info';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class UsuarioService {
   }
   usuarios: Array<Usuario> = [this.usuarioMock]
 
+  private userInfo: UserInfo = new UserInfo(0, '', '', false);
   constructor() { }
 
   atualiza(usuario: Usuario): Promise<void>{
@@ -36,6 +38,22 @@ export class UsuarioService {
     //TODO chamada do backend para pegar usuário
     return Promise.resolve(this.usuarios[id])
   }
+
+
+  setUserInfo(userInfo: UserInfo): void {
+    this.userInfo = userInfo;
+    localStorage.setItem('saldo', this.userInfo.saldo);
+  }
+
+  private saveUserSaldo(saldo: string): void {
+    localStorage.setItem('saldo', saldo);
+  }
+
+  getUserInfo(): UserInfo {
+    this.userInfo.saldo = localStorage.getItem('saldo') || '';
+    return this.userInfo;
+  }
+
 }
 
 export interface Usuario{

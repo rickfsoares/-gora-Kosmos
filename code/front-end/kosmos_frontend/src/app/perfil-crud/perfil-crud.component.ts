@@ -7,12 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { Usuario, UsuarioService } from '../service/usuario.service';
+import { CpfPipe } from '../shared/cpf.pipe';
+import { CepPipe } from '../shared/cep.pipe';
+import { CepDirective } from '../shared/cep.directive';
 
 @Component({
   selector: 'app-perfil-crud',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule,
-    MatButtonModule, MatIconModule, FormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, CpfPipe,
+    MatButtonModule, CepPipe, MatIconModule, FormsModule, CepDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './perfil-crud.component.html',
   styleUrl: './perfil-crud.component.scss'
