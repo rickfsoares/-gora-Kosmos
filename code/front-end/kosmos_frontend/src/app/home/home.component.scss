@@ -15,4 +15,14 @@
   grid-row: 2;
 }
 
+.chat-bot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  top: auto;
+  left: auto;
+  width: 20rem;
+  height: 35rem;
+  z-index: 1000;
+}
 

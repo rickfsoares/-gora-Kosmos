@@ -9,11 +9,20 @@ import { UserInfo } from '../models/user-info';
   templateUrl: './main-header.component.html',
   styleUrl: './main-header.component.scss'
 })
-export class MainHeaderComponent {
+export class MainHeaderComponent implements OnInit{
 
   userInfo: UserInfo;
+  saldo: number;
+
   constructor(private userService: UsuarioService) {
-    this.userInfo = userService.getUserInfo();
+    this.userInfo = this.userService.getUserInfo();
+    this.saldo = parseFloat(this.userInfo.saldo);
+  }
+
+  ngOnInit(): void {
+      this.userInfo = this.userService.getUserInfo();
+      this.saldo = parseFloat(this.userInfo.saldo);
+      console.log(this.userInfo.saldo);
   }
 
 }

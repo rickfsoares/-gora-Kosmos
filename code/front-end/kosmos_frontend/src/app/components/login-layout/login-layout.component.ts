@@ -34,15 +34,11 @@ export class LoginLayoutComponent {
       .subscribe({
       next: (response) => {
         if (response.token) {
-          this.authService.setToken(response.token); // Armazena o token usando o AuthService
-          console.log('token: ', response.token)
-          console.log('auth token', this.authService.getToken());
-          this.router.navigate(['/home'])
-          this.userService.setInfoSaldo(response.user.saldo);
+          this.authService.setToken(response.token);
           this.userService.setUserInfo(response.user);
+          this.router.navigate(['/home'])
         }
       }, error: (err) => {
-        // Trate erros de login, como email ou senha inválidos
         console.error('Erro ao fazer login', err);
         this.openSnackBar(`Erro ao realizar login: ${err.error}`, "Fechar");
       }});

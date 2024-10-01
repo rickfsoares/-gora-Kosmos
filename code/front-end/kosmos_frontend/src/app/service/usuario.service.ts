@@ -22,7 +22,6 @@ export class UsuarioService {
   usuarios: Array<Usuario> = [this.usuarioMock]
 
   private userInfo: UserInfo = new UserInfo(0, '', '', false);
-  private infoSaldo: string = '0.00';
   constructor() { }
 
   atualiza(usuario: Usuario): Promise<void>{
@@ -40,21 +39,21 @@ export class UsuarioService {
     return Promise.resolve(this.usuarios[id])
   }
 
-  setInfoSaldo(saldo: string): void {
-    this.infoSaldo = saldo;
-  }
 
   setUserInfo(userInfo: UserInfo): void {
     this.userInfo = userInfo;
+    localStorage.setItem('saldo', this.userInfo.saldo);
+  }
+
+  private saveUserSaldo(saldo: string): void {
+    localStorage.setItem('saldo', saldo);
   }
 
   getUserInfo(): UserInfo {
+    this.userInfo.saldo = localStorage.getItem('saldo') || '';
     return this.userInfo;
   }
 
-  getInfoSaldo(): string {
-    return this.infoSaldo;
-  }
 }
 
 export interface Usuario{
