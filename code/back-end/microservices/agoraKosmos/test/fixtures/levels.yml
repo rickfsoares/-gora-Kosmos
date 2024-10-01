@@ -1,7 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+level1:
+  id: 1
   nivel: 1
 
-two:
-  nivel: 1
+level2:
+  id: 2
+  nivel: 2

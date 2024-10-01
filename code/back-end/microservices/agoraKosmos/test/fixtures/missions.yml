@@ -1,11 +1,49 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  nome: MyString
-  descricao: MyString
-  xp: 1
+missao1:
+  id: 1
+  nome: 'Missão 1'
+  descricao: 'Compre 2 ativos'
+  xp: 10
+  quantidade_ativos: 2
+  level_id: 1
 
-two:
-  nome: MyString
-  descricao: MyString
-  xp: 1
+missao2:
+  id: 2
+  nome: 'Missão 2'
+  descricao: 'Compre 4 ativos'
+  xp: 20
+  quantidade_ativos: 4
+  level_id: 1
+
+missao3:
+  id: 3
+  nome: 'Missão 3'
+  descricao: 'Compre 6 ativos'
+  xp: 30
+  quantidade_ativos: 6
+  level_id: 1
+
+missao4:
+  id: 4
+  nome: 'Missão 4'
+  descricao: 'Compre 8 ativos'
+  xp: 40
+  quantidade_ativos: 8
+  level_id: 2
+
+missao5:
+  id: 5
+  nome: 'Missão 5'
+  descricao: 'Compre 10 ativos'
+  xp: 50
+  quantidade_ativos: 10
+  level_id: 2
+
+missao6:
+  id: 6
+  nome: 'Missão 6'
+  descricao: 'Compre 12 ativos'
+  xp: 60
+  quantidade_ativos: 12
+  level_id: 2
