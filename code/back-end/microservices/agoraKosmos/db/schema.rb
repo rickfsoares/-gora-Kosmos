@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_19_130217) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_28_131120) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,15 +24,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_19_130217) do
     t.index ["user_id"], name: "index_investments_on_user_id"
   end
 
-  create_table "news", force: :cascade do |t|
-    t.string "title"
-    t.string "summary"
-    t.string "url"
-    t.string "bannerImage"
+  create_table "levels", force: :cascade do |t|
+    t.integer "nivel"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "topic_id", null: false
-    t.index ["topic_id"], name: "index_news_on_topic_id"
+  end
+
+  create_table "missions", force: :cascade do |t|
+    t.string "nome"
+    t.string "descricao"
+    t.integer "xp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "level_id", null: false
+    t.integer "quantidade_ativos"
+    t.index ["level_id"], name: "index_missions_on_level_id"
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -46,22 +52,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_19_130217) do
     t.decimal "closing_price"
   end
 
-  create_table "topics", force: :cascade do |t|
-    t.string "nome"
+  create_table "user_missions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "mission_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.bigint "idMercadoPago"
-    t.string "status"
-    t.decimal "valor"
-    t.string "qrCodeBase64"
-    t.string "qrCode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "dataCriacao", precision: nil
-    t.integer "id_usuario"
+    t.index ["mission_id"], name: "index_user_missions_on_mission_id"
+    t.index ["user_id"], name: "index_user_missions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -86,12 +83,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_19_130217) do
     t.string "nome"
     t.string "cep"
     t.boolean "premium"
+    t.integer "xp"
+    t.bigint "level_id", null: false
+    t.integer "investimentos"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti"
+    t.index ["level_id"], name: "index_users_on_level_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "investments", "stocks"
   add_foreign_key "investments", "users"
-  add_foreign_key "news", "topics"
+  add_foreign_key "missions", "levels"
+  add_foreign_key "user_missions", "missions"
+  add_foreign_key "user_missions", "users"
+  add_foreign_key "users", "levels"
 end
