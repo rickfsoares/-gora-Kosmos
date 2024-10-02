@@ -25,9 +25,9 @@ export class CadastroComponent {
     this.cadastroService.setDados({
       nome: this.nome,
       cpf: this.cpf,
-      nickname: this.nickname,
+      apelido: this.nickname,
       email: this.email,
-      celular: this.celular,
+      telefone: this.celular,
       senha: this.senha
     });
     this.router.navigate(['/cadastro2']);

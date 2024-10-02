@@ -28,6 +28,10 @@ export class LoginLayoutComponent {
     });
   }
 
+  goToCadastro(): void {
+    this.router.navigate(['/cadastro']);
+  }
+
   onSubmit() {
     const credentials = { user: {email: this.email, password: this.password} };
     this.http.post<ResponseAuth>('http://localhost:3000/api/login', credentials)

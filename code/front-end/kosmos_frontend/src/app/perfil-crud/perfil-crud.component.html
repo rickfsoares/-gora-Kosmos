@@ -5,58 +5,69 @@
   <mat-card-content style="padding: auto;">
     <mat-form-field >
       <mat-label>Nome</mat-label>
-      <input matInput [(ngModel)]="usuario.nome"/>
+      <input matInput [(ngModel)]="userInfo.nome"/>
     </mat-form-field>
 
     <mat-form-field >
       <mat-label>CPF</mat-label>
-      <input matInput [readonly]="true" [value]="usuario.cpf | cpf"/>
+      <input matInput [readonly]="true" [value]="userInfo.cpf | cpf"/>
     </mat-form-field>
 
     <mat-form-field >
       <mat-label>Email</mat-label>
-      <input matInput type="email" [readonly]="true" [value]="usuario.email"/>
+      <input matInput type="email" [readonly]="true" [value]="userInfo.email"/>
     </mat-form-field>
 
     <mat-form-field >
       <mat-label>Telefone</mat-label>
-      <input matInput [(ngModel)]="usuario.telefone"/>
+      <input matInput [(ngModel)]="userInfo.telefone"/>
     </mat-form-field>
 
     <mat-form-field >
       <mat-label>Profissão</mat-label>
-      <input matInput [(ngModel)]="usuario.profissao"/>
+      <input matInput [(ngModel)]="userInfo.profissao"/>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Estado civil</mat-label>
-      <mat-select [(ngModel)]="usuario.estadoCivil">
-        <mat-option value="casado">Casado</mat-option>
-        <mat-option value="solteiro">Solteiro</mat-option>
-        <mat-option value="divorciado">Divorciado</mat-option>
+      <mat-select [(ngModel)]="userInfo.estadoCivil">
+        <mat-option value="casado(a)">Casado</mat-option>
+        <mat-option value="solteiro(a)">Solteiro</mat-option>
+        <mat-option value="divorciado(a)">Divorciado</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field >
       <mat-label>Endereço</mat-label>
-      <input matInput [(ngModel)]="usuario.endereco"/>
+      <input matInput [(ngModel)]="userInfo.endereco"/>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>CEP</mat-label>
-      <input matInput appCep [value]="11111111"/>
+      <input matInput appCep [value]="userInfo.cep"/>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>UF</mat-label>
       <mat-select>
-        <mat-option>JP</mat-option>
+        <mat-option value="" disabled selected>Selecione a UF</mat-option>
+        <mat-option *ngFor="let estado of ufs" [value]="estado.sigla">{{ estado.nome }}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>Cidade</mat-label>
+      <input matInput [(ngModel)]="userInfo.cidade"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Renda</mat-label>
+      <input matInput [(ngModel)]="userInfo.renda"/>
+    </mat-form-field>
+
+    <mat-form-field>
       <mat-label>Apelido</mat-label>
-      <input matInput />
+      <input matInput [(ngModel)]="userInfo.apelido"/>
     </mat-form-field>
 
     <button mat-flat-button color="primary" (click)="atualizaCadastro()">Salvar</button>

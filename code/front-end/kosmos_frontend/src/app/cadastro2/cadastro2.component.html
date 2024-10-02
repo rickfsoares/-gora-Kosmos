@@ -30,10 +30,10 @@
             <input type="text" id="profissao" [(ngModel)]="profissao" name="profissao" required placeholder="Profissão">
 
             <label for="renda"></label>
-            <input type="text" id="renda" [(ngModel)]="renda" name="renda" required placeholder="Renda Mensal">
+            <input type="number" id="renda" [(ngModel)]="renda" name="renda" required placeholder="Renda Mensal">
         </form>
         <br>
-        <button type="submit">Cadastrar</button>
+        <button (click)="onSubmit()" type="submit">Cadastrar</button>
 
     </div>
     <div class="image">
