@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -57,15 +57,25 @@ export class PerfilCrudComponent {
 
   userInfo: any = '';
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private usuarioService: UsuarioService, @Inject(MatSnackBar) private matSnackBar: MatSnackBar) { }
+
+  openSnackBar(message: string, action: string): void {
+    this.matSnackBar.open(message, action, {
+      duration: 2800
+    });
+  }
 
   ngOnInit(){
     this.getUserInfo();
   }
 
   atualizaCadastro() {
-    this.usuarioService.atualiza(new UserAtualizado(this.userInfo.nome, this.userInfo.email, this.userInfo.endereco, this.userInfo.uf, this.userInfo.cidade, this.userInfo.profissao, this.userInfo.renda, this.userInfo.estadoCivil, this.userInfo.telefone, this.userInfo.cep)).subscribe(res => {
-      console.log('atualização: ', res);
+    this.usuarioService.atualiza(new UserAtualizado(this.userInfo.nome, this.userInfo.email, this.userInfo.endereco, this.userInfo.uf, this.userInfo.cidade, this.userInfo.profissao, this.userInfo.renda, this.userInfo.estadoCivil, this.userInfo.telefone, this.userInfo.cep)).subscribe({next: res => {
+      //console.log('atualização: ', res);
+      this.openSnackBar("Cadastro Atualizado", "Fechar");
+    }, error: (err) => {
+      this.openSnackBar(`Erro ao atualizar cadastro: dados inválidos`, "Fechar");
+    }
     });
   }
 
