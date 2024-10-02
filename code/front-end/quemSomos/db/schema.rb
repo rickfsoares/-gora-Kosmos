@@ -41,6 +41,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_01_205209) do
     t.index ["level_id"], name: "index_missions_on_level_id"
   end
 
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.string "summary"
+    t.string "url"
+    t.string "bannerImage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "topic_id", null: false
+    t.index ["topic_id"], name: "index_news_on_topic_id"
+  end
+
   create_table "people", force: :cascade do |t|
     t.string "nome"
     t.string "email"
@@ -65,6 +76,24 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_01_205209) do
     t.datetime "updated_at", null: false
     t.decimal "opening_price"
     t.decimal "closing_price"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "idMercadoPago"
+    t.string "status"
+    t.decimal "valor"
+    t.string "qrCodeBase64"
+    t.string "qrCode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "dataCriacao", precision: nil
+    t.integer "id_usuario"
   end
 
   create_table "user_missions", force: :cascade do |t|
@@ -110,6 +139,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_01_205209) do
   add_foreign_key "investments", "stocks"
   add_foreign_key "investments", "users"
   add_foreign_key "missions", "levels"
+  add_foreign_key "news", "topics"
   add_foreign_key "phones", "people"
   add_foreign_key "user_missions", "missions"
   add_foreign_key "user_missions", "users"

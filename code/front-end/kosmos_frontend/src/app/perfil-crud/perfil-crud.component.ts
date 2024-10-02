@@ -12,6 +12,7 @@ import { CepPipe } from '../shared/cep.pipe';
 import { CepDirective } from '../shared/cep.directive';
 import { CommonModule } from '@angular/common';
 import { UserAtualizado } from '../models/user-atualizado';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-perfil-crud',
@@ -63,7 +64,9 @@ export class PerfilCrudComponent {
   }
 
   atualizaCadastro() {
-    this.usuarioService.atualiza(new UserAtualizado(this.userInfo.nome, this.userInfo.email, this.userInfo.endereco, this.userInfo.uf, this.userInfo.cidade, this.userInfo.profissao, this.userInfo.renda, this.userInfo.estadoCivil, this.userInfo.telefone, this.userInfo.cep)).subscribe();
+    this.usuarioService.atualiza(new UserAtualizado(this.userInfo.nome, this.userInfo.email, this.userInfo.endereco, this.userInfo.uf, this.userInfo.cidade, this.userInfo.profissao, this.userInfo.renda, this.userInfo.estadoCivil, this.userInfo.telefone, this.userInfo.cep)).subscribe(res => {
+      console.log('atualização: ', res);
+    });
   }
 
   getUserInfo() {
