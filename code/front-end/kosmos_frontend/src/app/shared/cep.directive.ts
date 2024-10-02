@@ -14,6 +14,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class CepDirective implements ControlValueAccessor {
 
+  private unmaskedValue: string = '';
+
   constructor(private el: ElementRef) { }
 
   private onChange: (value: string) => void = () => {};
@@ -21,6 +23,7 @@ export class CepDirective implements ControlValueAccessor {
 
   writeValue(value: string): void {
     if (value) {
+      this.unmaskedValue = value;
       this.el.nativeElement.value = this.applyMask(value);
     }
   }
@@ -39,10 +42,11 @@ export class CepDirective implements ControlValueAccessor {
 
   @HostListener('input', ['$event'])
   onInputChange(event: Event): void {
-    const input = this.el.nativeElement.value;
-    const maskedValue = this.applyMask(input);
+    const inputValue = this.el.nativeElement.value;
+    this.unmaskedValue = this.removeMask(inputValue); // Store the unmasked value
+    const maskedValue = this.applyMask(this.unmaskedValue);
     this.el.nativeElement.value = maskedValue;
-    this.onChange(maskedValue); // Update the model with the masked value
+    this.onChange(this.unmaskedValue); // Pass the unmasked value to the model
   }
 
   private applyMask(value: string): string {
@@ -57,5 +61,10 @@ export class CepDirective implements ControlValueAccessor {
     }
 
     return value;
+  }
+
+  private removeMask(value: string): string {
+    // Remove all non-digit characters to get the original value
+    return value.replace(/\D/g, '');
   }
 }
