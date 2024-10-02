@@ -68,8 +68,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def respond_with_create(current_user, _opts = {})
       if resource.persisted?
         service = RedisService.new
-        service.add_user_to_ranking_week(current_user.nome)
-        service.add_user_to_ranking_global(current_user.nome)
+        service.add_user_to_ranking_week(current_user.apelido)
+        service.add_user_to_ranking_global(current_user.apelido)
         render json: {
           status: {code: 200, message: 'Signed up successfully.'},
           data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
