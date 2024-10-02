@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CadastroService } from '../service/cadastro.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserCadastro } from '../models/user-cadastro';
 
 @Component({
   selector: 'app-cadastro2',
@@ -61,9 +62,13 @@ export class Cadastro2Component implements OnInit {
 
   onSubmit() {
     const dadosFinal = { ...this.dadosCadastro, endereco: this.endereco, cidade: this.cidade, estadoCivil: this.estadoCivil, profissao: this.profissao, renda: this.renda, uf: this.uf, cep: this.cep };
-    console.log(dadosFinal);
-    this.router.navigate(['/login']);
-    alert('Cadastro concluído com sucesso!');
-  }
+    const userCadastro: UserCadastro = new UserCadastro(dadosFinal.email, dadosFinal.senha, dadosFinal.nome, dadosFinal.cpf, dadosFinal.endereco, dadosFinal.uf, dadosFinal.cidade, dadosFinal.apelido, dadosFinal.profissao, dadosFinal.renda, dadosFinal.estadoCivil, dadosFinal.telefone, dadosFinal.cep);
+
+    this.cadastroService.setDadosOnBack(userCadastro).subscribe(() => {
+      console.log(dadosFinal);
+      this.router.navigate(['/login']);
+    });
+
+      }
 
 }

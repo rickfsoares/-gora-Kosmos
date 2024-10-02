@@ -1,20 +1,35 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { Mission } from '../models/mission';
+import { UsuarioService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-side-mission-bar',
   standalone: true,
   imports: [MatExpansionModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './side-mission-bar.component.html',
   styleUrl: './side-mission-bar.component.scss'
 })
-export class SideMissionBarComponent {
-  missions: Array<Mission> = [
-    new Mission("missão 1", "compre 2 ativos", 2),
-    new Mission("missão 2", "compre 4 ativos", 2)
-  ];
+export class SideMissionBarComponent implements OnInit {
+  missions: Array<Mission> = [];
 
-  readonly panelOpenState = signal(false);
+  constructor(private userService: UsuarioService) {}
+
+  ngOnInit(): void {
+    this.getMissions();
+  }
+
+  getMissions(): void {
+    this.userService.getMissions().subscribe((res) => {
+      //console.log("res: " + JSON.stringify(res, null, 2));
+      this.missions = [...res];
+      console.log("missions: ", this.missions);
+      });
+
+  }
+
+  trackById(index: number, mission: Mission): number {
+  return mission.id;
+  }
+
 }

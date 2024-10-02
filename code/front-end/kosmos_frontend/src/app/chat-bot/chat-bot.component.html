@@ -1,10 +1,23 @@
 <div class="chatbot-items">
   @if (show) {
     <div class="chat">
-      aqui vem o chat
+      <div class="chat-content">
+        <div class="message" *ngFor="let message of messages">
+          <div class="user-message" *ngIf="message.sender === 'user'">{{ message.text }}</div>
+          <div class="bot-message" *ngIf="message.sender === 'bot'" markdown=1>{{ message.text }}</div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" [(ngModel)]="userMessage" placeholder="Digite sua pergunta..." />
+        <button (click)="sendMessage()">Enviar</button>
+      </div>
     </div>
   }
 
-  <button (click)="showChat()"><img src="../../assets/svg/chat-bot-mod.png" /></button>
+  @if (statusPremium) {
+    <button (click)="showChat()"><img src="../../assets/svg/chat-bot-mod.png" /></button>
+    } @else {
+    <button (click)="openDialog()"><img src="../../assets/svg/premium-icon.png" /></button>
+    }
 </div>
 

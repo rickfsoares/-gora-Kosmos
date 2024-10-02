@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  patch "/api/become_premium", to: "current_user#become_premium"
   get '/api/mission', to: 'mission#index'
   get '/api/ranking/week', to: 'ranking#ranking_week'
   get '/api/ranking/global', to: 'ranking#ranking_global'

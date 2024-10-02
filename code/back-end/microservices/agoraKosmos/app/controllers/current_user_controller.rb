@@ -9,4 +9,11 @@ class CurrentUserController < ApplicationController
                                        :created_at, :updated_at]), 
                                       status: :ok
   end 
+
+  def become_premium
+    user = User.find(current_user.id)
+    user.premium = true
+    user.save!
+    render json: {premium: true}, status: :ok
+  end
 end
