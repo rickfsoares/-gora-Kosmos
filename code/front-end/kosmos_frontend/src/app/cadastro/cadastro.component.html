@@ -8,23 +8,26 @@
 
         <form (ngSubmit)="onSubmit()">
         <label for="nome"></label>
-        <input type="text" id="nome" name="nome" required placeholder="Nome Completo">
+        <input type="text" id="nome" [(ngModel)]="nome" name="nome"  required placeholder="Nome Completo">
+
+        <label for="senha"></label>
+        <input type="password" id="senha" [(ngModel)]="senha" name="senha" required placeholder="Senha"/>
 
         <label for="cpf"></label>
-        <input type="text" id="cpf" name="cpf" required placeholder="CPF">
+        <input type="text" id="cpf" [(ngModel)]="cpf" name="cpf" required placeholder="CPF">
 
         <label for="nickname"></label>
-        <input type="text" id="nickname" name="nickname" required placeholder="Apelido">
+        <input type="text" id="nickname" [(ngModel)]="nickname" name="nickname" required placeholder="Apelido">
 
         <label for="email"></label>
-        <input type="text" id="email" name="email" required placeholder="E-mail">
+        <input type="text" id="email" [(ngModel)]="email" name="email" required placeholder="E-mail">
 
         <label for="celular"></label>
-        <input type="text" id="celular" name="celular" required placeholder="DDD + Telefone">
+        <input type="text" id="celular" [(ngModel)]="celular" name="celular" required placeholder="DDD + Telefone">
 
         </form>
         <br>
-        <button type="submit">Avançar</button>
+        <button (click)="onSubmit()" type="submit">Avançar</button>
     </div>
 
     <div class="image">

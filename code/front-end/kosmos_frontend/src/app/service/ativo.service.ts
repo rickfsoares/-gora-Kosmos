@@ -18,7 +18,7 @@ export interface Ativo {
 })
 export class AtivoService {
 
-  private baseUrl = "http://localhost:3000/api"
+  private baseUrl = "http://localhost:3000/api";
 
   private authToken = localStorage.getItem('authToken') || '';
   private header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});

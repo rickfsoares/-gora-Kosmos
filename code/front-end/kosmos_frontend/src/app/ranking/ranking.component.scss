@@ -1,1 +1,74 @@
+.table-container {
+  text-align: center;
+  width: 74%;
+  overflow-x: auto;
+  background-color: #1b2e3b;
+  background: rgb(0,0,0);
+  background: linear-gradient(166deg, rgba(0,0,0,0.75) 45%, rgba(102,102,102,0.75) 100%);
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 10rem;
+
+      .fas{
+      color: #fff;
+      }
+
+      table {
+      width: 100%;
+      border-collapse: collapse;
+      color: #fff;
+
+      th, td {
+          padding: 10px;
+          text-align: center;
+      }
+
+      thead {
+          background: rgb(0,0,0);
+          background: linear-gradient(166deg, rgba(0,0,0,0.1) 45%, rgba(102,102,102,0.1) 100%);
+          border-radius: 8px;
+
+          th {
+          font-weight: bold;
+          }
+      }
+
+      tbody {
+          tr {
+          border-bottom: 1px solid #3e5364;
+
+          &:last-child {
+              border-bottom: none;
+          }
+
+          td {
+              &:last-child, &:nth-last-child(2) {
+              text-align: center;
+              }
+          }
+          }
+      }
+  }
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #2D3E50;
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  &.active {
+    background-color: #1C2733;
+    color: #FFFFFF;
+  }
+
+  &:not(.active) {
+    background-color: #A0A9B9;
+    color: #333;
+  }
+}
+
 

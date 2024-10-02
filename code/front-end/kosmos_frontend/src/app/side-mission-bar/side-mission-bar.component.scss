@@ -17,6 +17,18 @@
 
   height: 50rem;
 
-  padding-top: .5rem;
+  padding: .5rem;
+}
+
+.mat-expansion-panel {
+  background-color:rgba(0, 0, 0, 0.9);
+
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,0.48) 100%, rgba(102,102,102,0.75) 0%);
+}
+
+.mat-expansion-panel-header-title,
+.mat-expansion-panel {
+  color: white;
 }
 

@@ -18,6 +18,7 @@ import { InvestService } from '../service/invest.service';
 import { Sell } from '../models/sell';
 import { Investment } from '../models/investment';
 import { Buy } from '../models/buy';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 export interface ModalActionData {
   ativoNome: string;
@@ -49,11 +50,18 @@ export class ModalActionComponent {
   sell: Sell = new Sell(0, 0);
   buy: Buy = new Buy(0,0);
 
+
   constructor(
-    public dialogRef: MatDialogRef<ModalActionComponent>,
+    public dialogRef: MatDialogRef<ModalActionComponent>, @Inject(MatSnackBar) private matSnackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: ModalActionData, private investService: InvestService
   ) {
     this.calcularValorTotal();
+  }
+
+  openSnackBar(message: string, action: string): void {
+    this.matSnackBar.open(message, action, {
+      duration: 2800
+    });
   }
 
   onNoClick(): void {
@@ -69,7 +77,6 @@ export class ModalActionComponent {
     if (this.data.acao === "comprar") {
       this.comprar();
     }
-    // Fechar o diálogo e passar algum resultado, se necessário
 
   }
 
@@ -77,8 +84,14 @@ export class ModalActionComponent {
     if (this.data.investiment) {
       this.sell.investment_id = this.data.investiment[0].id;
       this.sell.quantity = this.quantidade;
-      this.investService.venderInvestimento(this.sell).subscribe( inv => {
+      this.investService.venderInvestimento(this.sell).subscribe(
+      { next: (inv) => {
         this.dialogRef.close({ investiment: inv });
+        this.openSnackBar("Venda realizada com sucesso", "Fechar");
+      },
+      error: (err) => {
+        this.openSnackBar(`Erro ao realizar a venda: ${err.error.message}`, "Fechar");
+      }
       });
     }
   }
@@ -87,7 +100,15 @@ export class ModalActionComponent {
 
     this.buy.quantity = this.quantidade;
     this.buy.stock_id = this.data.idAtivo;
-    this.investService.comprarInvestimento(this.buy).subscribe(response => this.dialogRef.close());
+    this.investService.comprarInvestimento(this.buy).subscribe({
+      next: (response) => {
+        this.dialogRef.close();
+        this.openSnackBar("Compra realizada com sucesso", "Fechar");
+      },
+      error: (err) => {
+        this.openSnackBar(`Falha a realizar a compra: ${err.error.message}`, "Fechar");
+      }
+    });
   }
 
   calcularValorTotal(): void {

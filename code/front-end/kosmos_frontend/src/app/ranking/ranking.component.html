@@ -1,4 +1,22 @@
+<div class="table-container">
 
-<div class="ranking">
- 
+  <button (click)="changeRankList('global')" [class.active]="rankList === 'global'" >Global</button>
+  <button (click)="changeRankList('semanal')" [class.active]="rankList === 'semanal'">Semanal</button>
+  <p></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Colocação</th>
+        <th>Investidor</th>
+        <th>XP</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let element of dataSource">
+      <td>{{element.pos}}</td>
+      <td>{{element.nome}}</td>
+      <td>{{element.xp}}</td>
+    </tbody>
+  </table>
+
 </div>

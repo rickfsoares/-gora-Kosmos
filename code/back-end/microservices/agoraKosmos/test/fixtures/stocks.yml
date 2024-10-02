@@ -1,13 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  nome: MyString
-  descricao: MyString
-  cotacao: 9.99
-  volume: 1
+IBM:
+  id: 1
+  nome: 'IBM'
+  descricao: 'IBM'
+  cotacao: 2.00
+  volume: 5
+  opening_price: 0.00
+  closing_price: 0.00
+  created_at: '2021-08-10 00:00:00'
+  updated_at: '2021-08-10 00:00:00'
 
-two:
-  nome: MyString
-  descricao: MyString
-  cotacao: 9.99
-  volume: 1
+GOOGL:
+  id: 2
+  nome: 'GOOGL'
+  descricao: 'GOOGL'
+  cotacao: 2.00
+  volume: 3
+  opening_price: 0.00
+  closing_price: 0.00
+  created_at: '2021-08-10 00:00:00'
+  updated_at: '2021-08-10 00:00:00'

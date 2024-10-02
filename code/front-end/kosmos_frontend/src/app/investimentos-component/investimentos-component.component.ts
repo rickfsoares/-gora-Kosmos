@@ -43,7 +43,6 @@ export class InvestimentosComponent implements OnInit {
   }
 
   openModalAction(ativo: Stock, acao: 'comprar' | 'vender'): void {
-    console.log('investimento dentro do modal: ', this.investimentos);
     const investment = this.investimentos.filter(inv => inv.stock_id == ativo.id) || null;
 
     const dialogRef = this.dialog.open<ModalActionComponent, ModalActionData>(ModalActionComponent, {

@@ -6,37 +6,70 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { Usuario, UsuarioService } from '../service/usuario.service';
+import { UsuarioService } from '../service/usuario.service';
+import { CpfPipe } from '../shared/cpf.pipe';
+import { CepPipe } from '../shared/cep.pipe';
+import { CepDirective } from '../shared/cep.directive';
+import { CommonModule } from '@angular/common';
+import { UserAtualizado } from '../models/user-atualizado';
 
 @Component({
   selector: 'app-perfil-crud',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule,
-    MatButtonModule, MatIconModule, FormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatCardModule, CpfPipe,
+    MatButtonModule, CepPipe, MatIconModule, FormsModule, CepDirective, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './perfil-crud.component.html',
   styleUrl: './perfil-crud.component.scss'
 })
 export class PerfilCrudComponent {
-  @Input() idUsuario!: number;
-  usuario!: Usuario;
+
+  ufs = [
+    { sigla: 'AC', nome: 'Acre' },
+    { sigla: 'AL', nome: 'Alagoas' },
+    { sigla: 'AP', nome: 'Amapá' },
+    { sigla: 'AM', nome: 'Amazonas' },
+    { sigla: 'BA', nome: 'Bahia' },
+    { sigla: 'CE', nome: 'Ceará' },
+    { sigla: 'DF', nome: 'Distrito Federal' },
+    { sigla: 'ES', nome: 'Espírito Santo' },
+    { sigla: 'GO', nome: 'Goiás' },
+    { sigla: 'MA', nome: 'Maranhão' },
+    { sigla: 'MT', nome: 'Mato Grosso' },
+    { sigla: 'MS', nome: 'Mato Grosso do Sul' },
+    { sigla: 'MG', nome: 'Minas Gerais' },
+    { sigla: 'PA', nome: 'Pará' },
+    { sigla: 'PB', nome: 'Paraíba' },
+    { sigla: 'PR', nome: 'Paraná' },
+    { sigla: 'PE', nome: 'Pernambuco' },
+    { sigla: 'PI', nome: 'Piauí' },
+    { sigla: 'RJ', nome: 'Rio de Janeiro' },
+    { sigla: 'RN', nome: 'Rio Grande do Norte' },
+    { sigla: 'RS', nome: 'Rio Grande do Sul' },
+    { sigla: 'RO', nome: 'Rondônia' },
+    { sigla: 'RR', nome: 'Roraima' },
+    { sigla: 'SC', nome: 'Santa Catarina' },
+    { sigla: 'SP', nome: 'São Paulo' },
+    { sigla: 'SE', nome: 'Sergipe' },
+    { sigla: 'TO', nome: 'Tocantins' },
+  ];
+
+  userInfo: any = '';
 
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit(){
-    this.usuarioService.getUsuarioById(this.idUsuario)
-      .then(usuario => this.usuario = usuario)
-      .catch(error => console.error(error))
+    this.getUserInfo();
   }
+
   atualizaCadastro() {
-    this.usuarioService.atualiza(this.usuario)
-    .then(() => {
-        alert("Usuário atualizado")
-      })
-      .catch(error => {
-        alert("Não foi possível atualizar os dados do usuário");
-        console.log(error)
-      })
+    this.usuarioService.atualiza(new UserAtualizado(this.userInfo.nome, this.userInfo.email, this.userInfo.endereco, this.userInfo.uf, this.userInfo.cidade, this.userInfo.profissao, this.userInfo.renda, this.userInfo.estadoCivil, this.userInfo.telefone, this.userInfo.cep)).subscribe();
+  }
+
+  getUserInfo() {
+    this.usuarioService.getAllUserInfo().subscribe((data) => {
+      this.userInfo = data;
+    });
   }
 
 }

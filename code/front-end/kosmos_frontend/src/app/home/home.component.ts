@@ -6,11 +6,12 @@ import { InvestimentosComponent } from '../investimentos-component/investimentos
 import { RankingComponent } from '../ranking/ranking.component';
 import { SideMissionBarComponent } from '../side-mission-bar/side-mission-bar.component';
 import { MainHeaderComponent } from '../main-header/main-header.component';
+import { ChatBotComponent } from '../chat-bot/chat-bot.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [InvestimentosComponent, RankingComponent, CommonModule, NavbarComponent, RouterOutlet, SideMissionBarComponent, MainHeaderComponent],
+  imports: [InvestimentosComponent, RankingComponent, CommonModule, NavbarComponent, RouterOutlet, SideMissionBarComponent, MainHeaderComponent, ChatBotComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
