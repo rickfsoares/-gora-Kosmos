@@ -1,0 +1,45 @@
+<%= form_with(model: person, data: {controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper'}, html: { class: 'formulario' })  do |form| %>
+  <% if person.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+        <% person.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <template data-nested-form-target='template'>
+      <%= form.fields_for :phones, Phone.new, child_index: 'NEW_RECORD' do |phone_fields| %>
+        <%= render 'phone_form', f: phone_fields %>
+      <% end %>
+  </template>
+  
+  <%= form.fields_for :phones do |phone_fields| %>
+    <%= render 'phone_form', f: phone_fields %>
+    <br/>
+  <% end %>
+  
+  <div data-nested-form-target="target"> </div>
+  <br/>
+
+  <button type = "button" data-action="nested-form#add">+ Celular </button>
+
+
+  <div>
+  <br/>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,50 @@
+<div class="container">   
+    <div class="sidebar">
+    </div>
+    
+    <div>
+        <div class="content">
+            <div class="quemsomos">
+                <div>
+                    <h1><b>Quem somos</b></h1>
+                    <p>Somos uma plataforma inovadora dedicada a simplificar o processo de
+                        compra de ativos, oferecendo aos investidores uma maneira eficiente
+                        e acessível de adquirir bens tangíveis e intangíveis. Utilizamos
+                        tecnologia avançada para integrar dados de mercado em tempo real,
+                        por meio da API Alpha Vantage, proporcionando informações precisas
+                        e atualizadas sobre os ativos.</p>
+                </div>
+                <%= image_tag 'qsomos1.jpeg', alt: 'Background image' %>
+            </div>
+    
+            <div class="nossamissao">
+                <div>
+                    <h1><b>Nossa missão</b></h1>
+                    <p>Nosso foco é oferecer uma experiência segura e confiável, terceirizando a
+                        gestão financeira para o Mercado Pago, uma solução já consolidada no
+                        mercado, para que possamos concentrar nossos esforços no que realmente
+                        importa: facilitar a tomada de decisões dos nossos investidores.</p>
+                </div>
+                 <%= image_tag 'qsomos2.jpeg', alt: 'Background image' %>
+            </div>
+    
+            <div class="duvidas">
+                <h2><b>Ficou com dúvidas?</b></h2>
+                <p>Quer saber mais sobre Ágora Kosmos? Preencha o formulário<br>com seus dados e um
+                    dos nossos representantes entrará<br>em contato.
+                </p>
+            </div>
+            <%= render "form", person: @person %>
+            <div class="formulario">
+              
+              <h1><b>Formulário</b></h1>
+              <label for="phone">Telefones para contato:</label>
+              
+              <div class="phone-input-container">
+                  <input type="text" id="phone" name="phone">
+                  <button type="button" class="add-phone">+</button>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

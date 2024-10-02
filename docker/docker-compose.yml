@@ -134,6 +134,24 @@ services:
     depends_on:
       - db_ativos
       - rabbitmq
+  
+  agora-kosmos-sobre:
+    build: ../code/front-end/quemSomos
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=Ativos
+      - POSTGRES_SCHEMA=public
+      - POSTGRES_HOST=db_ativos
+    
+    ports:
+      - "3004:3000"
+
+    volumes:
+      - ../code/front-end/quemSomos:/app
+
+    depends_on:
+      - db_ativos
 
 
 
