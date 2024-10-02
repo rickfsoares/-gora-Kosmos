@@ -6,15 +6,13 @@
   <table>
     <thead>
       <tr>
-        <th>Colocação</th>
         <th>Investidor</th>
         <th>XP</th>
       </tr>
     </thead>
 
     <tbody *ngFor="let element of dataSource">
-      <td>{{element.pos}}</td>
-      <td>{{element.nome}}</td>
+      <td>{{element.name}}</td>
       <td>{{element.xp}}</td>
     </tbody>
   </table>

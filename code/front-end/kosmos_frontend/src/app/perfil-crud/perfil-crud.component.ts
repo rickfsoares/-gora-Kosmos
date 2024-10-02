@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
+import { ChangeDetectorRef, ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -57,7 +57,7 @@ export class PerfilCrudComponent {
 
   userInfo: any = '';
 
-  constructor(private usuarioService: UsuarioService, @Inject(MatSnackBar) private matSnackBar: MatSnackBar) { }
+  constructor(private usuarioService: UsuarioService, @Inject(MatSnackBar) private matSnackBar: MatSnackBar, private cd: ChangeDetectorRef) { }
 
   openSnackBar(message: string, action: string): void {
     this.matSnackBar.open(message, action, {
@@ -82,6 +82,7 @@ export class PerfilCrudComponent {
   getUserInfo() {
     this.usuarioService.getAllUserInfo().subscribe((data) => {
       this.userInfo = data;
+      this.cd.detectChanges();
     });
   }
 

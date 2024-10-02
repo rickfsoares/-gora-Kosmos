@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import { UserInfo } from '../models/user-info';
+import { UserLogado } from '../models/user-logado';
 
 @Component({
   selector: 'app-main-header',
@@ -11,18 +12,29 @@ import { UserInfo } from '../models/user-info';
 })
 export class MainHeaderComponent implements OnInit{
 
-  userInfo: UserInfo;
-  saldo: number;
+  //userInfo: UserInfo;
+  userInfo: any;
+  saldo: number = 0;
 
   constructor(private userService: UsuarioService) {
-    this.userInfo = this.userService.getUserInfo();
-    this.saldo = parseFloat(this.userInfo.saldo);
+    //this.userInfo = this.userService.getUserInfo();
+    this.getUserInfo();
   }
 
   ngOnInit(): void {
-      this.userInfo = this.userService.getUserInfo();
-      this.saldo = parseFloat(this.userInfo.saldo);
-      console.log(this.userInfo.saldo);
+      //this.userInfo = this.userService.getUserInfo();
+    this.getUserInfo();
+  }
+
+  getUserInfo(): void {
+    this.userService.getAllUserInfo().subscribe({next: (res) => {
+      this.userInfo = res;
+      this.setSaldo();
+    }});
+  }
+
+  setSaldo(): void {
+    this.saldo = parseFloat(this.userInfo.saldo);
   }
 
 }

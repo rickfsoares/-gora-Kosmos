@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
+import { RankingService } from '../service/ranking.service';
+import { Ranking } from '../models/ranking';
 
 
 const ELEMENT_DATA: any[] = [
@@ -25,19 +27,29 @@ const WEEK_DATA: any[] = [
   templateUrl: './ranking.component.html',
   styleUrl: './ranking.component.scss'
 })
-export class RankingComponent {
-  displayedColumns: string[] = ['Colocação', 'Investidor', 'XP'];
-  dataSource = ELEMENT_DATA;
+export class RankingComponent implements OnInit {
+  displayedColumns: string[] = ['Investidor', 'XP'];
+  dataSource: Ranking[] = [];
 
   rankList: string = 'global'
+
+  constructor(private rankingService: RankingService) {}
+
+  ngOnInit(): void {
+      this.changeRankList(this.rankList);
+  }
 
   changeRankList(listName: string) {
 
     if(listName === 'global') {
-      this.dataSource = ELEMENT_DATA;
+      this.rankingService.getRankingGlobal().subscribe({next: (res) => {
+        this.dataSource = res;
+      }});
       this.rankList = 'global';
     } else if(listName === 'semanal') {
-      this.dataSource = WEEK_DATA;
+      this.rankingService.getRankingSemanal().subscribe({next: (res) => {
+        this.dataSource = res;
+      }});
       this.rankList = 'semanal';
     }
   }
