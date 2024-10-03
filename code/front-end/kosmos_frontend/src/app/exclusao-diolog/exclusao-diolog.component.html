@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Exclusão da conta</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>Pré-requisitos para exclusão da conta</h3>
+  <p>Para que a exclusão da conta seja bem sucedida é necessário que não haja nenhuma ação vinculada a sua conta Ágora.</p>
+  <p>Certifique-se de vender todas</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Excluir</button>
+</mat-dialog-actions>
+

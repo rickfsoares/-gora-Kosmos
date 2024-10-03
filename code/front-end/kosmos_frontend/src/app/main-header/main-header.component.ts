@@ -22,8 +22,12 @@ export class MainHeaderComponent implements OnInit{
   }
 
   ngOnInit(): void {
-      //this.userInfo = this.userService.getUserInfo();
+    //this.userInfo = this.userService.getUserInfo();
     this.getUserInfo();
+
+
+    setInterval(() => { this.getUserInfo() }, 10000);
+
   }
 
   getUserInfo(): void {
@@ -36,5 +40,6 @@ export class MainHeaderComponent implements OnInit{
   setSaldo(): void {
     this.saldo = parseFloat(this.userInfo.saldo);
   }
+
 
 }

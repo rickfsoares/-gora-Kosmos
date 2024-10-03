@@ -58,7 +58,7 @@ export class UsuarioService {
     localStorage.setItem('saldo', this.userInfo.saldo);
   }
 
-  private saveUserSaldo(saldo: string): void {
+  updateUserSaldo(saldo: string): void {
     localStorage.setItem('saldo', saldo);
   }
 
@@ -82,8 +82,12 @@ export class UsuarioService {
 
   setUserToPremium(): Observable<any> {
     const url = `${this.baseUrl}/become_premium`;
-    console.log('premium api');
     return this.http.patch<any>(url, {} , {headers: this.header});
+  }
+
+  excluirConta(): Observable<any> {
+    const url = `${this.baseUrl}/account_delete`;
+    return this.http.delete<any>(url, {headers: this.header});
   }
 
 
