@@ -4,6 +4,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PremiumDialogComponent } from '../premium-dialog/premium-dialog.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-chat-bot',
@@ -21,7 +22,13 @@ export class ChatBotComponent implements OnInit {
   userMessage: string = '';
   messages: { sender: 'user' | 'bot', text: string }[] = [];
 
-  constructor(private userService: UsuarioService) { }
+  constructor(private userService: UsuarioService, private matSnackBar: MatSnackBar) { }
+
+  openSnackBar(message: string, action: string): void {
+    this.matSnackBar.open(message, action, {
+      duration: 2800
+    });
+  }
 
   ngOnInit(): void {
     this.setStatusPremium();
@@ -56,10 +63,11 @@ export class ChatBotComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.userService.setUserToPremium().subscribe(res => {
+        this.userService.setUserToPremium().subscribe({next: (res) => {
           this.statusPremium = true;
-        });
-        console.log('mandou o dinheiro');
+        }, error: (err) => {
+            this.openSnackBar(`Erro ao realizar pagamento, Saldo Insuficiente`, "Fechar");
+        }});
       } else {
         console.log('cancelou');
       }

@@ -12,8 +12,13 @@ class CurrentUserController < ApplicationController
 
   def become_premium
     user = User.find(current_user.id)
-    user.premium = true
-    user.save!
-    render json: {premium: true}, status: :ok
+    if user.saldo >= 2
+      user.premium = true
+      user.saldo -= 2
+      user.save!
+      render json: {premium: true}, status: :ok
+    else
+      render json: {message: 'Saldo insuficiente'}, status: :bad_request
+    end
   end
 end
