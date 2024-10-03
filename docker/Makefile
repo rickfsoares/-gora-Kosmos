@@ -37,3 +37,13 @@ app-seed: upd
 app-create-db: upd, 
 	${dc} exec ${target} rails db:create
 
+app-create-db-test: upd
+	${dc} exec ${target} rails db:create RAILS_ENV=test
+
+app-migrate-test: upd
+	${dc} exec ${target} rails db:migrate RAILS_ENV=test
+
+app-run-tests: upd
+	${dc} exec ${target} rails test -v
+
+

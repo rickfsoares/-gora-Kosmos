@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private authToken: string | null = null;
+  private authToken: string = '';
 
   constructor() { }
 
@@ -16,13 +16,13 @@ export class AuthService {
     }
 
     // Retorna o token armazenado
-    getToken(): string | null {
-      return this.authToken || localStorage.getItem('authToken');
+    getToken(): string {
+      return this.authToken;
     }
 
     // Limpa o token
     clearToken(): void {
-      this.authToken = null;
+      this.authToken = '';
       localStorage.removeItem('authToken');
     }
 }

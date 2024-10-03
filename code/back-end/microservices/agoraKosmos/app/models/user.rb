@@ -33,7 +33,7 @@ class User < ApplicationRecord
       if mission.quantidade_ativos <= self.investimentos
         self.missions << mission
         self.xp += mission.xp
-        redis.add_xp_to_user(self.nome, mission.xp)
+        redis.add_xp_to_user(self.apelido, mission.xp)
         self.save
       end
     end

@@ -49,7 +49,7 @@
 
     <mat-form-field>
       <mat-label>UF</mat-label>
-      <mat-select [(ngModel)]="userInfo.estado">
+      <mat-select [(ngModel)]="userInfo.uf">
         <mat-option value="" disabled selected>Selecione a UF</mat-option>
         <mat-option *ngFor="let estado of ufs" [value]="estado.sigla">{{ estado.nome }}</mat-option>
       </mat-select>
@@ -67,7 +67,7 @@
 
     <mat-form-field>
       <mat-label>Apelido</mat-label>
-      <input matInput [(ngModel)]="userInfo.apelido"/>
+      <input matInput readonly="true" [(ngModel)]="userInfo.apelido"/>
     </mat-form-field>
 
     <button mat-flat-button color="primary" (click)="atualizaCadastro()">Salvar</button>
