@@ -12,17 +12,24 @@ export class RankingService {
   private authToken = localStorage.getItem('authToken') || '';
   private header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.authToken = localStorage.getItem('authToken') || '';
+    this.header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
+  }
 
   getRankingSemanal(): Observable<Ranking[]> {
     const url = `${this.baseUrl}/ranking/week`;
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
 
-    return this.http.get<Ranking[]>(url, {headers: this.header});
+    return this.http.get<Ranking[]>(url, {headers: header});
   }
 
   getRankingGlobal(): Observable<Ranking[]> {
     const url = `${this.baseUrl}/ranking/global`;
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
 
-    return this.http.get<Ranking[]>(url, {headers: this.header});
+    return this.http.get<Ranking[]>(url, {headers: header});
   }
 }

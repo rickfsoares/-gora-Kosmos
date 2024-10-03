@@ -41,9 +41,11 @@ export class UsuarioService {
 
   atualiza(usuario: UserAtualizado): Observable<UserAtualizado> {
     const url = `${this.baseUrl}/account_update`;
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
 
     const usuarioCadastrado = {user: {...usuario}};
-    return this.http.patch<UserAtualizado>(url, usuarioCadastrado,{headers : this.header});
+    return this.http.patch<UserAtualizado>(url, usuarioCadastrado,{headers : header});
   }
 
   getUsuarioById(id: number): Promise<Usuario>{
@@ -52,12 +54,11 @@ export class UsuarioService {
   }
 
   getAllUserInfo(): Observable<UserLogado> {
-    if (this.authToken == ''){
-      this.authToken = localStorage.getItem('authToken') || '';
-      this.header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
-    }
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
     const url = `${this.baseUrl}/current_user`;
-    return this.http.get<UserLogado>(url, {headers: this.header});
+    return this.http.get<UserLogado>(url, {headers: header});
   }
 
 
@@ -77,31 +78,45 @@ export class UsuarioService {
 
   sendMessageToGemini(message: string): Observable<Gemini> {
     const url = `${this.baseUrl}/gemini/index`;
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
 
-    return this.http.post<Gemini>(url, {message: message}, {headers: this.header});
+
+    return this.http.post<Gemini>(url, {message: message}, {headers: header});
   }
 
   getMissions(): Observable<Mission[]> {
     const url = `${this.baseUrl}/mission`;
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
 
-    return this.http.get<Mission[]>(url, {headers: this.header});
+    return this.http.get<Mission[]>(url, {headers: header});
 
   }
 
   setUserToPremium(): Observable<any> {
     const url = `${this.baseUrl}/become_premium`;
-    return this.http.patch<any>(url, {} , {headers: this.header});
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.patch<any>(url, {} , {headers: header});
   }
 
   excluirConta(): Observable<any> {
     const url = `${this.baseUrl}/account_delete`;
-    return this.http.delete<any>(url, {headers: this.header});
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.delete<any>(url, {headers: header});
   }
 
   logout() : Observable<any> {
     this.authToken = ''
     const url = `${this.baseUrl}/logout`;
-    return this.http.delete<any>(url, {headers: this.header})
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.delete<any>(url, {headers: header})
   }
 
 

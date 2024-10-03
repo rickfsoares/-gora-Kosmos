@@ -24,29 +24,41 @@ export class AtivoService {
   private header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
 
   constructor(private http: HttpClient) {
-   }
+    this.authToken = localStorage.getItem('authToken') || '';
+    this.header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
+  }
 
   getTotalPages(): Observable<Page> {
     const url = `${this.baseUrl}/stocks/pages`;
 
-    return this.http.get<Page>(url, {headers: this.header});
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.get<Page>(url, {headers: header});
   }
 
   getAtivoByNome(nome: string): Observable<Stock[]> {
     const url = `${this.baseUrl}/stocks/search?nome=${nome}`
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
 
-    return this.http.get<Stock[]>(url, {headers: this.header});
+    return this.http.get<Stock[]>(url, {headers: header});
   }
 
   getAtivos(numberOfPage: number): Observable<Stock[]> {
     const url = `${this.baseUrl}/stocks?page=${numberOfPage}`;
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
 
-    return this.http.get<Stock[]>(url, {headers: this.header});
+    return this.http.get<Stock[]>(url, {headers: header});
 
   }
 
   getTimeSeries(stockId: number): Observable<{ stock: Stock, currency: Currency[] }> {
     const url = `${this.baseUrl}/stocks/${stockId}`;
-    return this.http.get<{ stock: Stock, currency: Currency[] }>(url, {headers: this.header});
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.get<{ stock: Stock, currency: Currency[] }>(url, {headers: header});
   }
 }

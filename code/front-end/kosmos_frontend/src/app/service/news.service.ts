@@ -18,12 +18,19 @@ export class NewsService {
   private authToken = localStorage.getItem('authToken') || '';
   private header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
 
-  constructor(private http: HttpClient, private messageService: MessageService) { }
+  constructor(private http: HttpClient, private messageService: MessageService) {
+    this.authToken = localStorage.getItem('authToken') || '';
+    this.header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
+  }
 
   getNews(numberOfPage:number): Observable<News[]> {
     const url = `${this.baseUrl}/news?page=${numberOfPage}`
 
-    return this.http.get<News[]>(url, {headers: this.header})
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+
+    return this.http.get<News[]>(url, {headers: header})
     .pipe(
       catchError(this.handleError<News[]>('getNews', []))
     );
@@ -31,19 +38,27 @@ export class NewsService {
 
   getNewsByTopic(topic:string, numberOfPage:number): Observable<Filter> {
     const url = `${this.baseUrl}/news/filter?topic=${topic}&page=${numberOfPage}`;
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
 
-    return this.http.get<Filter>(url, {headers: this.header});
+    return this.http.get<Filter>(url, {headers: header});
 
   }
 
   getNumberOfPages(): Observable<Page> {
     const url = `${this.baseUrl}/news/pages`;
-    return this.http.get<Page>(url, {headers: this.header});
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.get<Page>(url, {headers: header});
   }
 
   getTopics(): Observable<Topic[]> {
     const url = `${this.baseUrl}/topics`;
-    return this.http.get<Topic[]>(url, {headers:this.header}).pipe(
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.get<Topic[]>(url, {headers: header}).pipe(
       catchError(this.handleError<Topic[]>('getTopics', []))
     );
   }

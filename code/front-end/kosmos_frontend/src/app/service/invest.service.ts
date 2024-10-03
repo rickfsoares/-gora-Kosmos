@@ -30,17 +30,29 @@ export class InvestService {
 
   getInvestimentos(): Observable<Investment[]> {
     const url = `${this.baseUrl}/investments`
-    return this.http.get<Investment[]>(url, {headers: this.header});
+
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.get<Investment[]>(url, {headers: header});
   }
 
 
   comprarInvestimento(buy: Buy): Observable<any> {
     const url = `${this.baseUrl}/investments`
-    return this.http.post<any>(url, buy, {headers: this.header});
+
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.post<any>(url, buy, {headers: header});
   }
 
   venderInvestimento(sell: Sell): Observable<Investment[]> {
     const url: string = `${this.baseUrl}/investments`
-    return this.http.put<Investment[]>(url, sell, {headers: this.header});
+
+    const authToken = localStorage.getItem('authToken') || '';
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.put<Investment[]>(url, sell, {headers: header});
   }
 }

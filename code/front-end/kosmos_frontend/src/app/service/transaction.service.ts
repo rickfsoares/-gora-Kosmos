@@ -13,15 +13,24 @@ export class TransactionService {
   private authToken = localStorage.getItem('authToken') || '';
   private header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.authToken = localStorage.getItem('authToken') || '';
+    this.header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
+  }
 
   getTransactions(): Observable<Transaction[]> {
     const url = `${this.baseUrl}/transactions`;
-    return this.http.get<Transaction[]>(url, {headers: this.header});
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.get<Transaction[]>(url, {headers: header});
   }
 
   payTransaction(valor: ValorPagamento): Observable<any> {
     const url = `${this.baseUrl}/transactions`
-    return this.http.post<any>(url, valor, {headers:this.header});
+    const authToken = localStorage.getItem('authToken') || ''
+    const header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${authToken}`});
+
+    return this.http.post<any>(url, valor, {headers: header});
   }
 }
