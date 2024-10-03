@@ -23,7 +23,10 @@ export class InvestService {
   private header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.authToken = localStorage.getItem('authToken') || '';
+    this.header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
+  }
 
   getInvestimentos(): Observable<Investment[]> {
     const url = `${this.baseUrl}/investments`

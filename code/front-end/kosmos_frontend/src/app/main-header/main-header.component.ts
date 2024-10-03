@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
-import { UserInfo } from '../models/user-info';
-import { UserLogado } from '../models/user-logado';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-header',
@@ -15,8 +14,9 @@ export class MainHeaderComponent implements OnInit{
   //userInfo: UserInfo;
   userInfo: any;
   saldo: number = 0;
+  usuario_logado : boolean = true;
 
-  constructor(private userService: UsuarioService) {
+  constructor(private userService: UsuarioService, private router: Router ) {
     //this.userInfo = this.userService.getUserInfo();
     this.getUserInfo();
   }
@@ -25,9 +25,7 @@ export class MainHeaderComponent implements OnInit{
     //this.userInfo = this.userService.getUserInfo();
     this.getUserInfo();
 
-
-    setInterval(() => { this.getUserInfo() }, 10000);
-
+    this.atualizaInformacoesDoUsuarioPorIntervalo();
   }
 
   getUserInfo(): void {
@@ -41,5 +39,23 @@ export class MainHeaderComponent implements OnInit{
     this.saldo = parseFloat(this.userInfo.saldo);
   }
 
+  logout() {
+    this.userService.logout().subscribe( (res)=> {
+      localStorage.clear()
+      this.usuario_logado = false;
+      this.router.navigate(['/login'])
+    })
+  }
+
+  atualizaInformacoesDoUsuarioPorIntervalo(){
+    if (this.usuario_logado){
+      const interval = setInterval(() => {
+        this.getUserInfo()
+        if (!this.usuario_logado){
+          clearInterval(interval);
+        }
+      }, 10000);
+    }
+  }
 
 }

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { UserAtualizado } from '../models/user-atualizado';
 import { Gemini } from '../models/gemini';
 import { Mission } from '../models/mission';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +32,12 @@ export class UsuarioService {
   private baseUrl: string = "http://localhost:3000/api"
 
   private authToken = localStorage.getItem('authToken') || '';
-  private header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
+  private header: HttpHeaders;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, authService: AuthService) {
+    this.authToken = localStorage.getItem('authToken') || ''
+    this.header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
+  }
 
   atualiza(usuario: UserAtualizado): Observable<UserAtualizado> {
     const url = `${this.baseUrl}/account_update`;
@@ -48,6 +52,10 @@ export class UsuarioService {
   }
 
   getAllUserInfo(): Observable<UserLogado> {
+    if (this.authToken == ''){
+      this.authToken = localStorage.getItem('authToken') || '';
+      this.header = new HttpHeaders({'Content-Type':'application/json; charset=utf-8', 'Authorization': `Bearer ${this.authToken}`});
+    }
     const url = `${this.baseUrl}/current_user`;
     return this.http.get<UserLogado>(url, {headers: this.header});
   }
@@ -88,6 +96,12 @@ export class UsuarioService {
   excluirConta(): Observable<any> {
     const url = `${this.baseUrl}/account_delete`;
     return this.http.delete<any>(url, {headers: this.header});
+  }
+
+  logout() : Observable<any> {
+    this.authToken = ''
+    const url = `${this.baseUrl}/logout`;
+    return this.http.delete<any>(url, {headers: this.header})
   }
 
 
