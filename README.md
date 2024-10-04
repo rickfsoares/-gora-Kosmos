@@ -1,5 +1,17 @@
 # Projeto Agora Kosmos
 
+![Preview da tela home](../Agora-Kosmos/agora-home.png)
+
+## Descrição
+
+Plataforma de investimentos que utiliza a abordagem de gameficação e possui suport a chatbot gemini.
+
+## Objetivo
+
+Projeto desenvolvido para as disciplinas de Programação Distribuída, Desenvolvimento e Execução de Projeto de Software e Desenvolvimento Ágil com Ferramenta RAD.
+
+## Configuração
+
 Este projeto utiliza Docker Compose para facilitar a configuração e execução do ambiente de desenvolvimento. Abaixo estão os comandos disponíveis para gerenciar o ciclo de vida da aplicação.
 
 ## Pré-requisitos
@@ -107,3 +119,11 @@ Este projeto utiliza Docker Compose para facilitar a configuração e execução
 - Certifique-se de ter o Docker e o Docker Compose instalados e configurados corretamente no seu ambiente de desenvolvimento.
 - Para qualquer alteração nas dependências ou no ambiente de execução, utilize os comandos `make up-build` ou `make build` conforme necessário.
 - Para o sistema operacional Windows, utilize o WSL2 para executar os comandos.
+
+## Contribuidores
+
+- [Clóvis Sergio](https://github.com/sergioclimajr)
+- [Jonas Ariel](https://github.com/Jonasapm94)
+- [Julyana Alencar](https://github.com/alencarjulyana)
+- [Ricardo França](https://github.com/rickfsoares)
+- [Taw-Ham Almeida](https://github.com/tawhamjavascript)
