@@ -1,18 +1,29 @@
-# Projeto Agora Kosmos
+# Agora Kosmos
 
 ![Preview da tela home](https://raw.githubusercontent.com/rickfsoares/Agora-Kosmos/refs/heads/main/agora-home.png)
 
-## Descrição
-
-Plataforma de investimentos que utiliza a abordagem de gameficação e possui suport a chatbot gemini.
-
 ## Objetivo
 
-Projeto desenvolvido para as disciplinas de Programação Distribuída, Desenvolvimento e Execução de Projeto de Software e Desenvolvimento Ágil com Ferramenta RAD.
+O projeto tem como objetivo construir uma aplicação web para compra e venda de ativos possuindo como diferencial a utilização de gameficação e inteligência artificial para auxiliar o usuário na tomada de decisão.
 
-## Configuração
+## Requistos
 
-Este projeto utiliza Docker Compose para facilitar a configuração e execução do ambiente de desenvolvimento. Abaixo estão os comandos disponíveis para gerenciar o ciclo de vida da aplicação.
+- Listagem de ativos
+- Visualização de detalhes de um ativo
+- Listagem de notícias sobre o mercado financeiro
+- Filtro de notícias
+- Compra de ativos
+- Venda de Ativos
+- Transferência de dinheiro para conta do usuário
+- Visualizar transferências pendente de dinheiro para conta do usuário
+- Listagem de missões
+- Listagem de ranking
+- Entrega XP Usuário
+- Chatbot
+- Exclusão de conta
+- Alteração de dados da conta
+- Realizar Cadastro
+- Realizar login
 
 ## Pré-requisitos
 
@@ -107,6 +118,28 @@ Este projeto utiliza Docker Compose para facilitar a configuração e execução
   ```bash
     make app-create-db
   ```
+  
+- **`app-create-db-test `**  
+  Cria o banco de dados de teste (`rails db:create RAILS_ENV=test`).
+
+  ```bash
+    make app-create-db-test
+  ```
+
+- **`app-migrate-test`**
+  Executa as migrações do banco de dados de teste (`rails db:migrate RAILS_ENV=test`).
+
+  ```bash
+    make app-migrate-test
+  ```
+
+- **`app-run-tests`** 
+
+  Executa os testes da aplicação (`minitest`).
+
+  ```bash
+    make app-run-tests
+  ```
 
 ## Como Usar
 
@@ -120,10 +153,14 @@ Este projeto utiliza Docker Compose para facilitar a configuração e execução
 - Para qualquer alteração nas dependências ou no ambiente de execução, utilize os comandos `make up-build` ou `make build` conforme necessário.
 - Para o sistema operacional Windows, utilize o WSL2 para executar os comandos.
 
-## Contribuidores
+## Contribuídores
 
-- [Clóvis Sergio](https://github.com/sergioclimajr)
-- [Jonas Ariel](https://github.com/Jonasapm94)
-- [Julyana Alencar](https://github.com/alencarjulyana)
-- [Ricardo França](https://github.com/rickfsoares)
-- [Taw-Ham Almeida](https://github.com/tawhamjavascript)
+- [Clóvis Sérgio Côrreia Lima Júnior](https://github.com/sergioclimajr)
+- [Jonas Ariel Passos de Medeiros](https://github.com/Jonasapm94)
+- [Julyana Santos Alencar](https://github.com/alencarjulyana)
+- [Ricardo França Soares](https://github.com/rickfsoares)
+- [Taw-Ham Almeida Balbino de Paula](https://github.com/tawhamjavascript)
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - consulte o arquivo [MIT](https://opensource.org/license/mit) para obter detalhes.
