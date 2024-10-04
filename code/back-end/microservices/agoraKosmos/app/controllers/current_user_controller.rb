@@ -3,11 +3,15 @@ class CurrentUserController < ApplicationController
   def index
     user = User.find(current_user.id)
 
-    render json: user.as_json(except: [:jti, :reset_password_token, 
+
+    user_json = user.as_json(except: [:jti, :reset_password_token, 
                                        :encrypted_password, :reset_password_token, 
                                        :reset_password_sent_at, :remember_created_at,
-                                       :created_at, :updated_at]), 
-                                      status: :ok
+                                       :created_at, :updated_at])
+                                       
+    user_json['level_id'] = user.level.nivel
+    render json: user_json, status: :ok
+
   end 
 
   def become_premium
