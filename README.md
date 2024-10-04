@@ -1,6 +1,6 @@
 # Projeto Agora Kosmos
 
-![Preview da tela home](../Agora-Kosmos/agora-home.png)
+![Preview da tela home](https://raw.githubusercontent.com/rickfsoares/Agora-Kosmos/refs/heads/main/agora-home.png)
 
 ## Descrição
 
